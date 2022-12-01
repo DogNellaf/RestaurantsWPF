@@ -1,7 +1,11 @@
 ﻿namespace RestaurantsDataApi.Models
 {
+    // блюдо
     public class Meal
     {
+        // id блюда из базы
+        public int Id { get; }
+
         // название
         public string Name { get; }
 
@@ -17,8 +21,9 @@
         // TODO тип блюда
         //public MealType Type { get; }
 
-        public Meal(string _name, double _cost, double weight, double servingsNumber)
+        public Meal(int _id, string _name, double _cost, double weight, double servingsNumber)
         {
+            Id = _id;
             Name = _name;
             Cost = _cost;
             Weight = weight;
