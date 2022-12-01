@@ -21,6 +21,7 @@
         // TODO тип блюда
         //public MealType Type { get; }
 
+        // конструктор
         public Meal(int id, string name, double cost, double weight, double servingsNumber)
         {
             Id = id;
@@ -30,6 +31,7 @@
             ServingsNumber = servingsNumber;
         }
 
+        // текстовый вывод
         public override string ToString()
         {
             return $"Блюдо '{Name}', стоит {Cost} р., вес {Weight} г., {ServingsNumber} порций";
