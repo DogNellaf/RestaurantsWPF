@@ -9,10 +9,10 @@ namespace RestaurantsDataApi.Models
         public int Id { get; }
 
         // блюда в заказе
-        // TODO
+        public List<Meal_to_Order> Meals { get; }
 
         // сумма заказа
-        // TODO
+        public double Summa => Meals.Sum(x => x.Meal.Cost * x.Count);
 
         // статус заказа
         public OrderStatus Status { get; private set; }
