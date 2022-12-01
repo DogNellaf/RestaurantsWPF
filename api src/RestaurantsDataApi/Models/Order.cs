@@ -24,6 +24,23 @@ namespace RestaurantsDataApi.Models
         public int TableCode { get; }
 
         // официант
-        // TODO
+        public Worker Server { get; }
+
+        // конструктор
+        public Order(int id, OrderStatus status, DateTime created, int tableCode, Worker server)
+        {
+            Id = id;
+            Status = status;
+            Created = created;
+            TableCode = tableCode;
+            Server = server;
+        }
+
+        // текстовый вывод
+        public override string ToString()
+        {
+            return $"Заказ {Id} за столиком {TableCode} в данный момент {Status}. " +
+                $"Дата создания - {Created}. Обслуживает {Server.FirstName} {Server.LastName}.";
+        }
     }
 }

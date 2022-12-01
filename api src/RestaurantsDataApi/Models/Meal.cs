@@ -21,11 +21,11 @@
         // TODO тип блюда
         //public MealType Type { get; }
 
-        public Meal(int _id, string _name, double _cost, double weight, double servingsNumber)
+        public Meal(int id, string name, double cost, double weight, double servingsNumber)
         {
-            Id = _id;
-            Name = _name;
-            Cost = _cost;
+            Id = id;
+            Name = name;
+            Cost = cost;
             Weight = weight;
             ServingsNumber = servingsNumber;
         }
