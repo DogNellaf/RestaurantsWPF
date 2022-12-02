@@ -5,7 +5,7 @@ using RestaurantsClasses.WorkersSystem;
 namespace RestaurantsClasees.OrderSystem
 {
     // заказ
-    public class Order
+    public class OfflineOrder
     {
         // id из базы
         public int Id { get; }
@@ -29,7 +29,7 @@ namespace RestaurantsClasees.OrderSystem
         public Worker Server { get; }
 
         // конструктор
-        public Order(int id, OrderStatus status, DateTime created, Table table, Worker server)
+        public OfflineOrder(int id, OrderStatus status, DateTime created, Table table, Worker server)
         {
             if (server is null)
             {

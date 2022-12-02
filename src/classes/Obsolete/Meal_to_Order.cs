@@ -7,7 +7,7 @@ namespace RestaurantsClasses.Obsolete
     public class Meal_to_Order
     {
         // заказ
-        public Order Order { get; }
+        public OfflineOrder Order { get; }
 
         // блюдо
         public Meal Meal { get; }
@@ -16,7 +16,7 @@ namespace RestaurantsClasses.Obsolete
         public int Count { get; }
 
         // конструктор
-        public Meal_to_Order(Order order, Meal meal, int count)
+        public Meal_to_Order(OfflineOrder order, Meal meal, int count)
         {
             if (order is null)
             {
