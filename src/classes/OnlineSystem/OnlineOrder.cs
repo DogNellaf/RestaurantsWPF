@@ -1,27 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RestaurantsClasees.OrderSystem;
 
 namespace RestaurantsClasses.OnlineSystem
 {
     // модель онлайн заказа
-    public class OnlineOrder
+    public class OnlineOrder: Model
     {
-        // id из базы
-        public int Id { get; }
+        // дата заказа
+        public DateTime Date { get; }
 
-        // название должности
-        public string Name { get; }
+        // клиент, который заказал
+        public Client Client { get; }
 
-        // стандартный оклад
-        public double Salary { get; }
+        // список блюд в заказе
+        public Dictionary<Meal, int> Meals { get; }
 
-        // процентный размер премии
-        public double Prize { get; }
+        // адрес заказа
+        public string Address { get; }
 
-        // уровень прав
-        public WorkerRole Role { get; }
+        // завершен ли
+        public bool IsComplited { get; private set; }
+
+        // конструктор
+        public OnlineOrder(int id, DateTime date, Client client, Dictionary<Meal, int> meals, string address): base(id)
+        {
+            Date = date;
+            Client = client;
+            Meals = meals;
+            Address = address;
+        }
+
+        // отметить заказ завершенным
+        public void Finish() => IsComplited = true;
+
+        // текстовый вывод
+        public override string ToString()
+        {
+            return $"Онлайн заказ от {Date}, заказал {Client.FirstName} {Client.SecondName} на адрес {Address}";
+        }
     }
 }

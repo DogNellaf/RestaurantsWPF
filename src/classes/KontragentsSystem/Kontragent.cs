@@ -1,10 +1,8 @@
 ﻿namespace RestaurantsClasses.KontragentsSystem
 {
     // класс компании - поставщика ингредиентов 
-    public class Kontragent
+    public class Kontragent: Model
     {
-        // id ингредиента из базы
-        public int Id { get; }
 
         // название компании
         public string Name { get; }
@@ -13,9 +11,8 @@
         public string Address { get; }
 
         // конструктор
-        public Kontragent(int id, string name, string address)
+        public Kontragent(int id, string name, string address): base(id)
         {
-            Id = id;
             Name = name;
             Address = address;
         }

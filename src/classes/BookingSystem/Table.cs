@@ -1,10 +1,8 @@
 ﻿namespace RestaurantsClasses.BookingSystem
 {
     // столик в ресторане
-    public class Table
+    public class Table: Model
     {
-        // id стола из базы
-        public int Id { get; }
 
         // количество мест
         public int SeatsCount { get; }
@@ -13,9 +11,8 @@
         public bool IsReserved { get; }
 
         // конструктор
-        public Table(int id, int seatsCount, bool isReserved)
+        public Table(int id, int seatsCount, bool isReserved): base(id)
         {
-            Id = id;
             SeatsCount = seatsCount;
             IsReserved = isReserved;
         }

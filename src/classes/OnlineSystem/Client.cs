@@ -1,10 +1,8 @@
 ﻿namespace RestaurantsClasses.OnlineSystem
 {
     // клиент
-    public class Client
+    public class Client: Model
     {
-        // id из базы
-        public int Id { get; }
 
         // имя пользователя для входа
         public string Username { get; }
@@ -19,9 +17,8 @@
         public string Password { get; }
 
         // конструктор
-        public Client(int id, string username, string firstName, string secondName, string password)
+        public Client(int id, string username, string firstName, string secondName, string password): base(id)
         {
-            Id = id;
             Username = username;
             FirstName = firstName;
             SecondName = secondName;

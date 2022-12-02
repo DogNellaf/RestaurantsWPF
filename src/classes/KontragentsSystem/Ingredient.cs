@@ -1,27 +1,16 @@
 ﻿namespace RestaurantsClasses.KontragentsSystem
 {
     // ингредиент 
-    public class Ingredient
+    public class Ingredient: Model
     {
-        // id ингредиента из базы
-        public int Id { get; }
 
         // название
         public string Name { get; }
 
-        // стоимость
-        // public double Cost { get; }
-
-        // вес
-        // public double Weight { get; }
-
         // конструктор
-        public Ingredient(int id, string name)
+        public Ingredient(int id, string name): base(id)
         {
-            Id = id;
             Name = name;
-            // Cost = cost;
-            // Weight = weight;
         }
 
         // текстовый вывод

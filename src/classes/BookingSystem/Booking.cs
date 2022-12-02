@@ -1,10 +1,8 @@
 ﻿namespace RestaurantsClasses.BookingSystem
 {
     // бронь
-    public class Booking
+    public class Booking: Model
     {
-        // id брони из базы
-        public int Id { get; }
 
         // дата и время, на которое забронировано
         public DateTime Time { get; }
@@ -19,9 +17,8 @@
         public Table Table { get; }
 
         // конструктор
-        public Booking(int id, DateTime time, string clientLastName, bool isPaid, Table table)
+        public Booking(int id, DateTime time, string clientLastName, bool isPaid, Table table): base(id)
         {
-            Id = id;
             Time = time;
             ClientLastName = clientLastName;
             IsPaid = isPaid;

@@ -3,7 +3,7 @@
 namespace RestaurantsClasses.KontragentsSystem
 {
     // ингредиент в блюде
-    public class Ingerdient_to_Meal
+    public class Ingerdient_to_Meal: Model
     {
         // заказ
         public Ingredient Ingredient { get; }
@@ -15,7 +15,7 @@ namespace RestaurantsClasses.KontragentsSystem
         public double Weight { get; }
 
         // конструктор
-        public Ingerdient_to_Meal(Ingredient ingredient, Meal meal, double weight)
+        public Ingerdient_to_Meal(int id, Ingredient ingredient, Meal meal, double weight): base(id)
         {
             if (ingredient is null)
             {
