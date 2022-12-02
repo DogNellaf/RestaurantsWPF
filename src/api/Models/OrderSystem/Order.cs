@@ -1,4 +1,7 @@
 ﻿using RestaurantsDataApi.Enums;
+using RestaurantsDataApi.Models.BookingSystem;
+using RestaurantsDataApi.Models.OrderSystem;
+using RestaurantsDataApi.Models.WorkersSystem;
 
 namespace RestaurantsDataApi.Models
 {
