@@ -1,4 +1,4 @@
-﻿namespace RestaurantsDataApi.Enums
+﻿namespace RestaurantsClasses.Enums
 {
     public enum WorkerRole
     {

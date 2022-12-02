@@ -1,4 +1,4 @@
-﻿namespace RestaurantsDataApi.Models
+﻿namespace RestaurantsClasses.KontragentsSystem
 {
     // ингредиент 
     public class Ingredient

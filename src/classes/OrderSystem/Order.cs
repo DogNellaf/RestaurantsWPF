@@ -1,9 +1,8 @@
-﻿using RestaurantsDataApi.Enums;
-using RestaurantsDataApi.Models.BookingSystem;
-using RestaurantsDataApi.Models.OrderSystem;
-using RestaurantsDataApi.Models.WorkersSystem;
+﻿using RestaurantsClasses.BookingSystem;
+using RestaurantsClasses.Enums;
+using RestaurantsClasses.WorkersSystem;
 
-namespace RestaurantsDataApi.Models
+namespace RestaurantsClasees.OrderSystem
 {
     // заказ
     public class Order
@@ -12,10 +11,10 @@ namespace RestaurantsDataApi.Models
         public int Id { get; }
 
         // блюда в заказе
-        public List<Meal_to_Order> Meals { get; }
+        public Dictionary<Meal, int> Meals { get; }
 
         // сумма заказа
-        public double Summa => Meals.Sum(x => x.Meal.Cost * x.Count);
+        public double Summa => Meals.Sum(x => x.Key.Cost * x.Value);
 
         // статус заказа
         public OrderStatus Status { get; private set; }
@@ -42,7 +41,7 @@ namespace RestaurantsDataApi.Models
             Created = created;
             Table = table;
             Server = server;
-            Meals = new List<Meal_to_Order>();
+            Meals = new Dictionary<Meal, int>();
         }
 
         // текстовый вывод

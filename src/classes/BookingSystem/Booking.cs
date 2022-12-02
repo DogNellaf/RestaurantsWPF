@@ -1,4 +1,4 @@
-﻿namespace RestaurantsDataApi.Models.BookingSystem
+﻿namespace RestaurantsClasses.BookingSystem
 {
     // бронь
     public class Booking

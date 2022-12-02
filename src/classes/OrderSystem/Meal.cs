@@ -1,4 +1,4 @@
-﻿namespace RestaurantsDataApi.Models
+﻿namespace RestaurantsClasees.OrderSystem
 {
     // блюдо
     public class Meal

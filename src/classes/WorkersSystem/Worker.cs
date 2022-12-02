@@ -1,6 +1,6 @@
-﻿using RestaurantsDataApi.Enums;
+﻿using RestaurantsClasses.Enums;
 
-namespace RestaurantsDataApi.Models.WorkersSystem
+namespace RestaurantsClasses.WorkersSystem
 {
     // сотрудник
     public class Worker

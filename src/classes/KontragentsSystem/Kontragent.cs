@@ -1,4 +1,4 @@
-﻿namespace RestaurantsDataApi.Models
+﻿namespace RestaurantsClasses.KontragentsSystem
 {
     // класс компании - поставщика ингредиентов 
     public class Kontragent

@@ -1,10 +1,13 @@
-﻿namespace RestaurantsDataApi.Models
+﻿using RestaurantsClasees.OrderSystem;
+
+namespace RestaurantsClasses.Obsolete
 {
-    // ингредиент в блюде
-    public class Ingerdient_to_Meal
+    // блюдо в заказе, для реализации связи многие ко многим - уже не используется
+    [Obsolete]
+    public class Meal_to_Order
     {
         // заказ
-        public Ingredient Ingredient { get; }
+        public Order Order { get; }
 
         // блюдо
         public Meal Meal { get; }
