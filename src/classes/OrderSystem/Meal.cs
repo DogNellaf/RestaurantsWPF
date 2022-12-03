@@ -20,7 +20,7 @@ namespace RestaurantsClasees.OrderSystem
         public int ServingsNumber { get; }
 
         // ингредиенты
-        public Dictionary<Ingredient, double> Ingredients => Database.GetIngredients(this);
+        public Dictionary<Ingredient, double> GetIngredients() => Database.GetIngredients(this);
 
         // конструктор
         public Meal(int id, string name, double cost, double weight, int servingsNumber): base(id)
