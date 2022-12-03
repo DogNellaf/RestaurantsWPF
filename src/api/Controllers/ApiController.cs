@@ -77,5 +77,10 @@ namespace RestaurantsDataApi.Controllers
             return Database.AddUser(username, hash);
         }
 
+        public List<OnlineOrder> OnlineOrders(int client_id)
+        {
+            return Database.GetObject<OnlineOrder>($"client_id = {client_id}");
+        }
+
     }
 }

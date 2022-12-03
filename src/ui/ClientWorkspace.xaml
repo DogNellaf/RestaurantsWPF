@@ -11,10 +11,15 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Margin="0,48,400,0">
-            <DataGrid x:Name="orderGrid" Height="374" d:ItemsSource="{d:SampleData ItemCount=5}" Width="392"/>
+            <DataGrid x:Name="orderGrid" Height="374" d:ItemsSource="{d:SampleData ItemCount=5}" Width="392" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </StackPanel>
         <Label Content="Ваши заказы" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="33" Width="390" FontSize="18"/>
-        <Label Content="Выбрать по дате" HorizontalAlignment="Left" Margin="405,10,0,0" VerticalAlignment="Top" Height="33" Width="220" FontSize="18"/>
+        <Label Content="Выбрать по дате" HorizontalAlignment="Right" Margin="0,241,180,0" VerticalAlignment="Top" Height="40" Width="220" FontSize="24"/>
+        <DatePicker x:Name="datePicker" HorizontalAlignment="Right" Margin="0,241,10,0" VerticalAlignment="Top" Height="40" Width="160"/>
+        <Label Content="Удалить заказ по id" HorizontalAlignment="Right" Margin="0,286,175,0" VerticalAlignment="Top" Height="50" Width="225" FontSize="24"/>
+        <TextBox HorizontalAlignment="Left" Margin="630,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="50"/>
+        <CheckBox Content="Включить сортировку по дате" HorizontalAlignment="Right" Margin="0,0,10,58" VerticalAlignment="Bottom" Height="35" Width="390" FontSize="24"/>
+        <Button Content="Добавить заказ" HorizontalAlignment="Left" Margin="400,0,0,10" VerticalAlignment="Bottom" Height="48" Width="390" FontSize="24"/>
 
     </Grid>
 </Window>
