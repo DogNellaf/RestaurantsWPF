@@ -51,6 +51,20 @@ namespace RestaurantsDataApi.Controllers
 
             return null;
         }
+
+        public Worker AuthWorker(string username, string password)
+        {
+            var worker = Database.GetObject<Worker>($"username = '{username}'").FirstOrDefault();
+
+            if (worker is null)
+                return null;
+
+            if (Encoder.CheckHash(password, worker.Password))
+                return worker;
+
+            return null;
+        }
+
         public Client AddUser(string username, string password)
         {
             var client = Database.GetObject<Client>($"username = {username}").FirstOrDefault();

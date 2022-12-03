@@ -46,5 +46,11 @@ namespace ui
             new Register(this).Show();
             Hide();
         }
+
+        private void workerButton_Click(object sender, RoutedEventArgs e)
+        {
+            new WorkerAuth(this).Show();
+            Hide();
+        }
     }
 }

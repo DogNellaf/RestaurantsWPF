@@ -47,6 +47,11 @@ namespace RestaurantsClasses.WorkersSystem
             Password = items[6].ToString();
         }
 
+        public Worker()
+        {
+
+        }
+
         // текстовый вывод
         public override string ToString()
         {
