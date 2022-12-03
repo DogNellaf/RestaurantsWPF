@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="ClientWorkspace" Height="450" Width="800" WindowState="Maximized">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,48,400,0">
+            <DataGrid x:Name="orderGrid" Height="374" d:ItemsSource="{d:SampleData ItemCount=5}" Width="392"/>
+        </StackPanel>
+        <Label Content="Ваши заказы" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="33" Width="390" FontSize="18"/>
+        <Label Content="Выбрать по дате" HorizontalAlignment="Left" Margin="405,10,0,0" VerticalAlignment="Top" Height="33" Width="220" FontSize="18"/>
+
     </Grid>
 </Window>

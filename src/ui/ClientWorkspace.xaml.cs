@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ui.Helper;
 
 namespace ui
 {
@@ -25,6 +26,7 @@ namespace ui
         {
             _client = client;
             InitializeComponent();
+            orderGrid.DataContext = RequestClient.GetOrders(client);
         }
     }
 }

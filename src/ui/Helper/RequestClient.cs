@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RestaurantsClasees;
+using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
@@ -81,6 +82,14 @@ namespace ui.Helper
             var result = SendRequest($"api/adduser?username={username}&password={password}");
 
             return JsonSerializer.Deserialize<Client>(result);
+        }
+
+        // получение заказов по пользователю
+        public static List<OnlineOrder> GetOrders(Client client)
+        {
+            var result = SendRequest($"api/onlineorders?client_id={client.Id}");
+
+            return JsonSerializer.Deserialize<List<OnlineOrder>>(result);
         }
     }
 }
