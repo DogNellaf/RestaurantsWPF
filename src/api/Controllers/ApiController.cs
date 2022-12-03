@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses;
 using RestaurantsClasses.KontragentsSystem;
+using RestaurantsClasses.OnlineSystem;
+using RestaurantsClasses.WorkersSystem;
 
 namespace RestaurantsDataApi.Controllers
 {
@@ -37,11 +39,25 @@ namespace RestaurantsDataApi.Controllers
             return meal.GetIngredients().Select(x => x.Key);
         }
 
-        public bool Auth(string login, string password, bool isClient = false)
+        public bool Auth(string username, string password, bool isClient = false)
         {
             if (isClient)
             {
+                var client = Database.GetObject<Client>($"username = {username}").FirstOrDefault();
 
+                if (client is null)
+                    return false;
+
+                return Encoder.CheckHash(password, client.Password);
+            }
+            else
+            {
+                var worker = Database.GetObject<Worker>($"username = '{username}'").FirstOrDefault();
+
+                if (worker is null)
+                    return false;
+
+                return Encoder.CheckHash(password, worker.Password);
             }
         }
     }
