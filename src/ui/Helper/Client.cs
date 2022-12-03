@@ -15,7 +15,7 @@ namespace ui.Helper
     internal static class Client
     {
         // адрес сервера
-        private static string _server = "localhost";
+        private static string _server = "https://localhost:7173";
 
         // порт
         //private static int _port = 7173;
@@ -44,7 +44,7 @@ namespace ui.Helper
         // проверка авторизации пользователя 
         public static bool Auth(string username, string password)
         {
-            var result = SendRequest($"auth?username={username}&password={password}");
+            var result = SendRequest($"api/auth?username={username}&password={password}");
             return JsonSerializer.Deserialize<bool>(result);
         }
     }
