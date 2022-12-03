@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantsClasses.OnlineSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WorkManager
+namespace ui
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ClientWorkspace.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ClientWorkspace : Window
     {
-        public MainWindow()
+        private Client _client;
+        public ClientWorkspace(Client client)
         {
+            _client = client;
             InitializeComponent();
         }
     }

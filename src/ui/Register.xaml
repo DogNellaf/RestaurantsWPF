@@ -1,0 +1,23 @@
+﻿<Window x:Class="ui.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ui"
+        mc:Ignorable="d"
+        Title="Register" Height="468" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="511*"/>
+            <ColumnDefinition Width="289*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Ресторан &quot;Золотая волна&quot;" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="150" Width="780" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="48" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="usernameTextBox" HorizontalAlignment="Left" Height="40" Margin="250,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" Grid.ColumnSpan="2"/>
+        <Label Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="300" FontSize="24" Margin="250,210,0,0" Grid.ColumnSpan="2"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="250,300,0,0" VerticalAlignment="Top" Height="40" Width="300" FontSize="24" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="40" Margin="250,345,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" Grid.ColumnSpan="2"/>
+        <Button x:Name="registerButton" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="250,400,0,0" VerticalAlignment="Top" Height="40" Width="300" FontSize="24" Click="authButton_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="loginButton" Content="Авторизация" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Height="40" Width="170" FontSize="24" Click="loginButton_Click" Grid.Column="1"/>
+
+    </Grid>
+</Window>

@@ -9,10 +9,11 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RestaurantsClasees;
 using RestaurantsClasses;
+using RestaurantsClasses.OnlineSystem;
 
 namespace ui.Helper
 {
-    internal static class Client
+    internal static class RequestClient
     {
         // адрес сервера
         private static string _server = "https://localhost:7173";
@@ -42,10 +43,19 @@ namespace ui.Helper
         }
 
         // проверка авторизации пользователя 
-        public static bool Auth(string username, string password)
+        public static Client Auth(string username, string password)
         {
             var result = SendRequest($"api/auth?username={username}&password={password}");
-            return JsonSerializer.Deserialize<bool>(result);
+
+            try
+            {
+                return JsonSerializer.Deserialize<Client>(result);
+            }
+            catch
+            {
+                return null;
+            }
+           
         }
     }
 }

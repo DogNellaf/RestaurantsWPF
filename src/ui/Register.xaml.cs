@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,31 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ui.Helper;
 
-namespace WorkManager
+namespace ui
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Логика взаимодействия для Register.xaml
     /// </summary>
-    public partial class Authorization : Page
-    {
-        public Authorization()
+    public partial class Register : Window
+    {\SAfd=UTF32Encoding asdfas
+        public Register()
         {
             InitializeComponent();
         }
 
+        private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            Closdsaf
+        }
+
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
-            var username = usernameTextBox.Text;
-            var password = passwordTextBox.Text;
-            var isCorrect = Client.Auth(username, password);
-            if (isCorrect)
-            {
-                MessageBox.Show("Ура");
-            }
+
         }
     }
 }

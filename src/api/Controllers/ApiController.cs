@@ -39,26 +39,19 @@ namespace RestaurantsDataApi.Controllers
             return meal.GetIngredients().Select(x => x.Key);
         }
 
-        public bool Auth(string username, string password, bool isClient = false)
+        public Client Auth(string username, string password)
         {
-            if (isClient)
-            {
-                var client = Database.GetObject<Client>($"username = {username}").FirstOrDefault();
+            var client = Database.GetObject<Client>($"username = {username}").FirstOrDefault();
 
-                if (client is null)
-                    return false;
+            if (client is null)
+                return null;
 
-                return Encoder.CheckHash(password, client.Password);
-            }
-            else
-            {
-                var worker = Database.GetObject<Worker>($"username = '{username}'").FirstOrDefault();
+            if (Encoder.CheckHash(password, client.Password))
+                return client;
 
-                if (worker is null)
-                    return false;
-
-                return Encoder.CheckHash(password, worker.Password);
-            }
+            return null;
         }
+
+         
     }
 }
