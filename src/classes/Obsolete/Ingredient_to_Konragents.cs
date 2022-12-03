@@ -1,6 +1,9 @@
-﻿namespace RestaurantsClasses.KontragentsSystem
+﻿using RestaurantsClasses.KontragentsSystem;
+
+namespace RestaurantsClasses.Obsolete
 {
-    public class Ingredient_to_Konragents: Model
+    [Obsolete]
+    public class Ingredient_to_Konragents : Model
     {
         // заказ
         public Ingredient Ingredient { get; }
@@ -15,7 +18,7 @@
         public double Cost { get; }
 
         // конструктор
-        public Ingredient_to_Konragents(int id, Ingredient ingredient, Kontragent kontragent, double weight, double cost): base(id)
+        public Ingredient_to_Konragents(int id, Ingredient ingredient, Kontragent kontragent, double weight, double cost) : base(id)
         {
             if (ingredient is null)
             {

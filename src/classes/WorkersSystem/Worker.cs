@@ -17,23 +17,23 @@ namespace RestaurantsClasses.WorkersSystem
         // телефон 
         public string? Phone { get; }
 
-        // роль сотрудника
-        public WorkerRole Role { get; }
+        // должность сотрудника
+        public Position Position { get; }
 
         // конструктор
-        public Worker(int id, string firstName, string lastName, string? phone, WorkerRole role)
+        public Worker(int id, string firstName, string lastName, string? phone, Position position)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;
-            Role = role;
+            Position = position;
         }
 
         // текстовый вывод
         public override string ToString()
         {
-            return $"{Role} {FirstName} {LastName}";
+            return $"{Position.Name} {FirstName} {LastName}";
         }
     }
 }

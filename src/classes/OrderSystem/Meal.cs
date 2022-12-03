@@ -1,4 +1,6 @@
-﻿namespace RestaurantsClasees.OrderSystem
+﻿using RestaurantsClasses.KontragentsSystem;
+
+namespace RestaurantsClasees.OrderSystem
 {
     // блюдо
     public class Meal
@@ -16,19 +18,23 @@
         public double Weight { get; }
 
         // количество порций
-        public double ServingsNumber { get; }
+        public int ServingsNumber { get; }
+
+        // ингредиенты
+        public Dictionary<Ingredient, double> Ingredients { get; }
 
         // TODO тип блюда
         //public MealType Type { get; }
 
         // конструктор
-        public Meal(int id, string name, double cost, double weight, double servingsNumber)
+        public Meal(int id, string name, double cost, double weight, int servingsNumber, Dictionary<Ingredient, double> ingredients)
         {
             Id = id;
             Name = name;
             Cost = cost;
             Weight = weight;
             ServingsNumber = servingsNumber;
+            Ingredients = ingredients;
         }
 
         // текстовый вывод

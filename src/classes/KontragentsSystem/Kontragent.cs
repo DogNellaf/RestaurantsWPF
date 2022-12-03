@@ -10,11 +10,15 @@
         // адрес
         public string Address { get; }
 
+        // какие предлагает ингредиенты 
+        public Dictionary<Ingredient, double> Goods;
+
         // конструктор
-        public Kontragent(int id, string name, string address): base(id)
+        public Kontragent(int id, string name, string address, Dictionary<Ingredient, double> goods) : base(id)
         {
             Name = name;
             Address = address;
+            Goods = goods;
         }
 
         // текстовый вывод

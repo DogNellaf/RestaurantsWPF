@@ -6,7 +6,7 @@ namespace RestaurantsClasses.OnlineSystem
     public class OnlineOrder: Model
     {
         // дата заказа
-        public DateTime Date { get; }
+        public DateTime Created { get; }
 
         // клиент, который заказал
         public Client Client { get; }
@@ -23,7 +23,7 @@ namespace RestaurantsClasses.OnlineSystem
         // конструктор
         public OnlineOrder(int id, DateTime date, Client client, Dictionary<Meal, int> meals, string address): base(id)
         {
-            Date = date;
+            Created = date;
             Client = client;
             Meals = meals;
             Address = address;
@@ -35,7 +35,7 @@ namespace RestaurantsClasses.OnlineSystem
         // текстовый вывод
         public override string ToString()
         {
-            return $"Онлайн заказ от {Date}, заказал {Client.FirstName} {Client.SecondName} на адрес {Address}";
+            return $"Онлайн заказ от {Created}, заказал {Client.FirstName} {Client.SecondName} на адрес {Address}";
         }
     }
 }
