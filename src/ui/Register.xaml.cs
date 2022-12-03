@@ -25,7 +25,7 @@ namespace ui
             var client = RequestClient.Register(username, password);
             if (client is not null)
             {
-                MessageBox.Show("Введены неверные данные");
+                MessageBox.Show("Вы успешно зарегистрированы");
                 BackToLogin();
             }
             else

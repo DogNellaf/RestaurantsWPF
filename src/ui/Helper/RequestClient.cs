@@ -63,15 +63,7 @@ namespace ui.Helper
         {
             var result = SendRequest($"api/adduser?username={username}&password={password}");
 
-            try
-            {
-                return JsonSerializer.Deserialize<Client>(result);
-            }
-            catch
-            {
-                return null;
-            }
-
+            return JsonSerializer.Deserialize<Client>(result);
         }
     }
 }

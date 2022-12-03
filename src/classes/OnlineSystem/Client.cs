@@ -5,16 +5,16 @@
     {
 
         // имя пользователя для входа
-        public string Username { get; }
+        public string Username { get; set; }
 
         // имя
-        public string FirstName { get; }
+        public string FirstName { get; set; }
 
         // фамилия
-        public string SecondName { get; }
+        public string SecondName { get; set; }
 
         // хэш пароля
-        public string Password { get; }
+        public string Password { get; set; }
 
         // конструктор
         public Client(int id, string username, string firstName, string secondName, string password): base(id)
@@ -31,6 +31,11 @@
             FirstName = items[2].ToString();
             SecondName = items[3].ToString();
             Password = items[4].ToString();
+        }
+
+        public Client()
+        {
+
         }
 
         // функция авторизации

@@ -166,5 +166,18 @@ namespace RestaurantsClasses
             }
             return result;
         }
+
+        // функция добавления пользователя
+        public static Client AddUser(string username, string password)
+        {
+            var clients = GetObject<Client>();
+            int id = 1;
+            if (clients.Count > 0)
+            {
+                id = clients.Last().Id + 1;
+            }
+            ExecuteQuery($"INSERT INTO \"Client\" VALUES ({id}, '{username}', '', '', '{password}')");
+            return GetObject<Client>($"id = {id}").FirstOrDefault();
+        }
     }
 }

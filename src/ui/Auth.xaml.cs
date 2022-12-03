@@ -40,5 +40,11 @@ namespace ui
                 MessageBox.Show("Введены неверные данные");
             }
         }
+
+        private void registerButton_Click(object sender, RoutedEventArgs e)
+        {
+            new Register(this).Show();
+            Hide();
+        }
     }
 }

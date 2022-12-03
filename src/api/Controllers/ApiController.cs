@@ -41,7 +41,7 @@ namespace RestaurantsDataApi.Controllers
 
         public Client Auth(string username, string password)
         {
-            var client = Database.GetObject<Client>($"username = {username}").FirstOrDefault();
+            var client = Database.GetObject<Client>($"username = '{username}'").FirstOrDefault();
 
             if (client is null)
                 return null;
@@ -51,7 +51,17 @@ namespace RestaurantsDataApi.Controllers
 
             return null;
         }
+        public Client AddUser(string username, string password)
+        {
+            var client = Database.GetObject<Client>($"username = {username}").FirstOrDefault();
 
-         
+            if (client is not null)
+                return null;
+
+            var hash = Encoder.Encode(password);
+
+            return Database.AddUser(username, hash);
+        }
+
     }
 }
