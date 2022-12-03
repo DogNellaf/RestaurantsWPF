@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ui.Helper;
 
 namespace WorkManager
 {
@@ -23,6 +25,17 @@ namespace WorkManager
         public Authorization()
         {
             InitializeComponent();
+        }
+
+        private void authButton_Click(object sender, RoutedEventArgs e)
+        {
+            var username = usernameTextBox.Text;
+            var password = passwordTextBox.Text;
+            var isCorrect = Client.Auth(username, password);
+            if (isCorrect)
+            {
+                MessageBox.Show("Ура");
+            }
         }
     }
 }

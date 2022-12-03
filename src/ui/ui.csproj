@@ -7,4 +7,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="RestaurantsClasses">
+      <HintPath>..\classes\bin\Debug\net6.0\RestaurantsClasses.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
