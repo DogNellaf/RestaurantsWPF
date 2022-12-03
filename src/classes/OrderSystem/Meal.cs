@@ -20,19 +20,15 @@ namespace RestaurantsClasees.OrderSystem
         public int ServingsNumber { get; }
 
         // ингредиенты
-        public Dictionary<Ingredient, double> Ingredients { get; private set; }
-
-        // TODO тип блюда
-        //public MealType Type { get; }
+        public Dictionary<Ingredient, double> Ingredients => Database.GetIngredients(this);
 
         // конструктор
-        public Meal(int id, string name, double cost, double weight, int servingsNumber, Dictionary<Ingredient, double> ingredients): base(id)
+        public Meal(int id, string name, double cost, double weight, int servingsNumber): base(id)
         {
             Name = name;
             Cost = cost;
             Weight = weight;
             ServingsNumber = servingsNumber;
-            Ingredients = ingredients;
         }
 
         public Meal(object[] items): base((int)items[0])
@@ -41,12 +37,6 @@ namespace RestaurantsClasees.OrderSystem
             Cost = (double)items[2];
             Weight = (double)items[3];
             ServingsNumber = (int)items[4];
-        }
-
-        // добавить ингредиенты блюду
-        public void SetIngredients(Dictionary<Ingredient, double> ingredients)
-        {
-            Ingredients = ingredients;
         }
 
         // текстовый вывод

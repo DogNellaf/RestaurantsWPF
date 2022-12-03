@@ -5,14 +5,16 @@ namespace RestaurantsClasses.OnlineSystem
     // модель онлайн заказа
     public class OnlineOrder: Model
     {
+        private int _client_id;
+
         // дата заказа
         public DateTime Created { get; }
 
         // клиент, который заказал
-        public Client Client { get; }
+        public Client Client => Database.GetObject<Client>($"id = {_client_id}").FirstOrDefault();
 
         // список блюд в заказе
-        public Dictionary<Meal, int> Meals { get; }
+        public Dictionary<Meal, int> Meals => Database.GetMeals(this);
 
         // адрес заказа
         public string Address { get; }
@@ -21,12 +23,20 @@ namespace RestaurantsClasses.OnlineSystem
         public bool IsComplited { get; private set; }
 
         // конструктор
-        public OnlineOrder(int id, DateTime date, Client client, Dictionary<Meal, int> meals, string address): base(id)
+        public OnlineOrder(int id, DateTime date, int client_id, string address): base(id)
         {
             Created = date;
-            Client = client;
-            Meals = meals;
+            _client_id = client_id;
             Address = address;
+            IsComplited = false;
+        }
+
+        public OnlineOrder(object[] items) : base((int)items[0])
+        {
+            Created = (DateTime)items[1];
+            _client_id = (int)items[2];
+            Address = items[3].ToString();
+            IsComplited = (bool)items[4];
         }
 
         // отметить заказ завершенным

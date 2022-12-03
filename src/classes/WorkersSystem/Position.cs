@@ -3,10 +3,8 @@
 namespace RestaurantsClasses.WorkersSystem
 {
     // должность
-    public class Position
+    public class Position: Model
     {
-        // id из базы
-        public int Id { get; }
 
         // название должности
         public string Name { get; }
@@ -21,13 +19,20 @@ namespace RestaurantsClasses.WorkersSystem
         public WorkerRole Role { get; }
 
         // конструктор
-        public Position(int id, string name, double salary, double prize, WorkerRole role)
+        public Position(int id, string name, double salary, double prize, WorkerRole role): base(id)
         {
-            Id = id;
             Name = name;
             Salary = salary;
             Prize = prize;
             Role = role;
+        }
+
+        public Position(object[] items) : base((int)items[0])
+        {
+            Name = items[1].ToString();
+            Salary = (double)items[2];
+            Prize = (double)items[3];
+            Role = (WorkerRole)(int)items[4];
         }
 
         // текстовый вывод

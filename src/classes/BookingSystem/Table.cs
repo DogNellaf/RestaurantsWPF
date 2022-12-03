@@ -16,5 +16,16 @@
             SeatsCount = seatsCount;
             IsReserved = isReserved;
         }
+
+        public Table(object[] items) : base((int)items[0])
+        {
+            IsReserved = (bool)items[1];
+        }
+
+        // текстовый вывод
+        public override string ToString()
+        {
+            return $"Столик {Id}, количество мест {SeatsCount}";
+        }
     }
 }

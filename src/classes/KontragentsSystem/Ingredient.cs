@@ -13,6 +13,11 @@
             Name = name;
         }
 
+        public Ingredient(object[] items) : base((int)items[0])
+        {
+            Name = items[1].ToString();
+        }
+
         // текстовый вывод
         public override string ToString()
         {

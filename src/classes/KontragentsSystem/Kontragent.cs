@@ -11,14 +11,19 @@
         public string Address { get; }
 
         // какие предлагает ингредиенты 
-        public Dictionary<Ingredient, double> Goods;
+        public Dictionary<Ingredient, (double weight, double cost)> Goods => Database.GetGoods(this);
 
         // конструктор
         public Kontragent(int id, string name, string address, Dictionary<Ingredient, double> goods) : base(id)
         {
             Name = name;
             Address = address;
-            Goods = goods;
+        }
+
+        public Kontragent(object[] items) : base((int)items[0])
+        {
+            Name = items[1].ToString();
+            Address = items[2].ToString();
         }
 
         // текстовый вывод

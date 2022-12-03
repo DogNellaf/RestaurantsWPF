@@ -25,6 +25,14 @@
             Password = password;
         }
 
+        public Client(object[] items) : base((int)items[0])
+        {
+            Username = items[1].ToString();
+            FirstName = items[2].ToString();
+            SecondName = items[3].ToString();
+            Password = items[4].ToString();
+        }
+
         // функция авторизации
         public bool Auth(string password) => Password == GetHash(password);
 
