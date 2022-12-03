@@ -1,23 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using RestaurantsClasees.OrderSystem;
+using RestaurantsDataApi.Helpers;
 
 namespace RestaurantsDataApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RestaurantController : ControllerBase
+    public class ApiController : ControllerBase
     {
 
-        private readonly ILogger<RestaurantController> _logger;
+        private readonly ILogger<ApiController> _logger;
 
-        public RestaurantController(ILogger<RestaurantController> logger)
+        public ApiController(ILogger<ApiController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetRestaurants")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet(Name = "GetMeals")]
+        public IEnumerable<Meal> Get()
         {
-            return null;
+            return Database.GetObject<Meal>();
         }
     }
 }

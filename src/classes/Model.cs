@@ -3,7 +3,7 @@
     // базовый общий класс для всего
     public abstract class Model
     {
-        public virtual int Id { get; }
+        public virtual int Id { get; private set; }
 
         public Model(int id)
         {

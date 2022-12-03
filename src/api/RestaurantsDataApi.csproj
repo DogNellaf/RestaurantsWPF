@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RestaurantsClasses">
+      <HintPath>..\classes\bin\Debug\net6.0\RestaurantsClasses.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
