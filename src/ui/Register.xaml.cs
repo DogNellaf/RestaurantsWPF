@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using ui.Helper;
 
 namespace ui
 {
@@ -18,20 +7,38 @@ namespace ui
     /// Логика взаимодействия для Register.xaml
     /// </summary>
     public partial class Register : Window
-    {\SAfd=UTF32Encoding asdfas
-        public Register()
+    {
+        private Window _previous;
+        public Register(Window previous)
         {
+            _previous = previous;
             InitializeComponent();
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
-        {
-            Closdsaf
-        }
+        private void loginButton_Click(object sender, RoutedEventArgs e) => BackToLogin();
+
 
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var username = usernameTextBox.Text;
+            var password = passwordTextBox.Text;
+            var client = RequestClient.Register(username, password);
+            if (client is not null)
+            {
+                MessageBox.Show("Введены неверные данные");
+                BackToLogin();
+            }
+            else
+            {
+                MessageBox.Show("Не удалось зарегистрироваться");
+            }
         }
+
+        private void BackToLogin()
+        {
+            _previous.Show();
+            Close();
+        }
+
     }
 }

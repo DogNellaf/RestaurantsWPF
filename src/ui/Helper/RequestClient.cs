@@ -57,5 +57,21 @@ namespace ui.Helper
             }
            
         }
+
+        // регистрация
+        public static Client Register(string username, string password)
+        {
+            var result = SendRequest($"api/adduser?username={username}&password={password}");
+
+            try
+            {
+                return JsonSerializer.Deserialize<Client>(result);
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
     }
 }
