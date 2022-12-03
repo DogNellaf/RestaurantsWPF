@@ -13,4 +13,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="WorkerAuth.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>

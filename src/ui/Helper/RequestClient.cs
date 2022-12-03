@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using RestaurantsClasees;
 using RestaurantsClasses;
 using RestaurantsClasses.OnlineSystem;
+using RestaurantsClasses.WorkersSystem;
 
 namespace ui.Helper
 {
@@ -56,6 +57,22 @@ namespace ui.Helper
                 return null;
             }
            
+        }
+
+        // проверка авторизации сотрудника 
+        public static Worker AuthWorker(string username, string password)
+        {
+            var result = SendRequest($"api/authworker?username={username}&password={password}");
+
+            try
+            {
+                return JsonSerializer.Deserialize<Worker>(result);
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
         // регистрация
