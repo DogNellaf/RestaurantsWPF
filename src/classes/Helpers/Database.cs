@@ -13,7 +13,7 @@ namespace RestaurantsClasses
         private static string _connectionString = "Host=localhost;Username=postgres;Password=root;Database=restaurants";
 
         // порт сервера
-        private static int _port = 5432;
+        //private static int _port = 5432;
 
         // функция соединения с базой данных TODO
         //private static void Connect() { }
@@ -22,7 +22,7 @@ namespace RestaurantsClasses
         //private static void Quit() { }
 
         //функция получения объектов из базы, где Т - любой наследник класса Model
-        internal static List<T> GetObject<T>(string where = "") where T : Model
+        public static List<T> GetObject<T>(string where = "") where T : Model
         {
             // создаем пустой список объектов
             List<T> objects = new();
