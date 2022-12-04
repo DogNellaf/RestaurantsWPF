@@ -87,7 +87,7 @@ namespace ui.Helper
         // получение заказов по пользователю
         public static List<OnlineOrder> GetOrders(Client client)
         {
-            var result = SendRequest($"api/onlineorders?client_id={client.Id}");
+            var result = SendRequest($"api/onlineorders?client_id={client.id}");
 
             return JsonSerializer.Deserialize<List<OnlineOrder>>(result);
         }

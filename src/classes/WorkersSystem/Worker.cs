@@ -6,7 +6,7 @@ namespace RestaurantsClasses.WorkersSystem
     public class Worker: Model
     {
         // id должности
-        private int _position_id;
+        public int PositionId;
 
         // имя
         public string FirstName { get; }
@@ -24,7 +24,7 @@ namespace RestaurantsClasses.WorkersSystem
         public string Password { get; }
 
         // должность сотрудника
-        public Position Position => Database.GetObject<Position>($"id = {_position_id}").FirstOrDefault();
+        //public Position Position => Database.GetObject<Position>($"id = {_position_id}").FirstOrDefault();
 
         // конструктор
         public Worker(int id, string firstName, string lastName, string? phone, int position_id, string username, string password) : base(id)
@@ -32,7 +32,7 @@ namespace RestaurantsClasses.WorkersSystem
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;
-            _position_id = position_id;
+            PositionId = position_id;
             Username = username;
             Password = password;
         }
@@ -42,7 +42,7 @@ namespace RestaurantsClasses.WorkersSystem
             FirstName = items[1].ToString();
             LastName = items[2].ToString();
             Phone = items[3] is null ? null : items[3].ToString();
-            _position_id = (int)items[4];
+            PositionId = (int)items[4];
             Username = items[5].ToString();
             Password = items[6].ToString();
         }
@@ -53,9 +53,9 @@ namespace RestaurantsClasses.WorkersSystem
         }
 
         // текстовый вывод
-        public override string ToString()
-        {
-            return $"{Position.Name} {FirstName} {LastName}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"{Position.Name} {FirstName} {LastName}";
+        //}
     }
 }

@@ -3,21 +3,16 @@
     // базовый общий класс для всего
     public abstract class Model
     {
-        public virtual int Id { get; set; }
+        public virtual int id { get; set; }
 
         public Model(int id)
         {
-            Id = id;
+            this.id = id;
         }
 
         public Model()
         {
 
-        }
-
-        public override string ToString()
-        {
-            throw new NotImplementedException();
         }
     }
 }

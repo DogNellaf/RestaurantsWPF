@@ -11,10 +11,10 @@
         public string Address { get; }
 
         // какие предлагает ингредиенты 
-        public Dictionary<Ingredient, (double weight, double cost)> Goods => Database.GetGoods(this);
+        //public Dictionary<Ingredient, (double weight, double cost)> Goods => Database.GetGoods(this);
 
         // конструктор
-        public Kontragent(int id, string name, string address, Dictionary<Ingredient, double> goods) : base(id)
+        public Kontragent(int id, string name, string address) : base(id)
         {
             Name = name;
             Address = address;

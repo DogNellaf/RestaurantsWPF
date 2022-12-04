@@ -5,47 +5,52 @@ namespace RestaurantsClasses.OnlineSystem
     // модель онлайн заказа
     public class OnlineOrder: Model
     {
-        private int _client_id;
+        public int ClientId;
 
         // дата заказа
-        public DateTime Created { get; }
+        public DateTime created { get; }
 
         // клиент, который заказал
-        public Client Client => Database.GetObject<Client>($"id = {_client_id}").FirstOrDefault();
+       // public Client GetClient() => Database.GetObject<Client>($"id = {_client_id}").FirstOrDefault();
 
         // список блюд в заказе
-        public Dictionary<Meal, int> Meals => Database.GetMeals(this);
+        public Dictionary<Meal, int> GetMeals() => Database.GetMeals(this);
 
         // адрес заказа
-        public string Address { get; }
+        public string address { get; }
 
         // завершен ли
-        public bool IsComplited { get; private set; }
+        public bool isComplited { get; private set; }
 
         // конструктор
         public OnlineOrder(int id, DateTime date, int client_id, string address): base(id)
         {
-            Created = date;
-            _client_id = client_id;
-            Address = address;
-            IsComplited = false;
+            created = date;
+            ClientId = client_id;
+            this.address = address;
+            isComplited = false;
         }
 
         public OnlineOrder(object[] items) : base((int)items[0])
         {
-            Created = (DateTime)items[1];
-            _client_id = (int)items[2];
-            Address = items[3].ToString();
-            IsComplited = (bool)items[4];
+            created = (DateTime)items[1];
+            ClientId = (int)items[2];
+            address = items[3].ToString();
+            isComplited = (bool)items[4];
+        }
+
+        public OnlineOrder()
+        {
+
         }
 
         // отметить заказ завершенным
-        public void Finish() => IsComplited = true;
+        public void Finish() => isComplited = true;
 
         // текстовый вывод
-        public override string ToString()
-        {
-            return $"Онлайн заказ от {Created}, заказал {Client.FirstName} {Client.SecondName} на адрес {Address}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"Онлайн заказ от {created}, заказал {client.FirstName} {client.SecondName} на адрес {address}";
+        //}
     }
 }

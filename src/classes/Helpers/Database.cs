@@ -97,7 +97,7 @@ namespace RestaurantsClasses
         // функция получения ингредиентов по блюду
         public static Dictionary<Ingredient, double> GetIngredients(Meal meal)
         {
-            var rawData = ExecuteQuery($"SELECT * FROM \"Ingredient_to_Meal\" WHERE meal_id = {meal.Id}");
+            var rawData = ExecuteQuery($"SELECT * FROM \"Ingredient_to_Meal\" WHERE meal_id = {meal.id}");
             var result = new Dictionary<Ingredient, double>();
 
             // проходимся по каждой строчке таблицы-результата
@@ -121,7 +121,7 @@ namespace RestaurantsClasses
         // функция получения ингредиентов по контрагенту
         public static Dictionary<Ingredient, (double weight, double cost)> GetGoods(Kontragent kontragent)
         {
-            var rawData = ExecuteQuery($"SELECT * FROM \"Ingredient_to_Kontragent\" WHERE kontragent_id = {kontragent.Id}");
+            var rawData = ExecuteQuery($"SELECT * FROM \"Ingredient_to_Kontragent\" WHERE kontragent_id = {kontragent.id}");
             var result = new Dictionary<Ingredient, (double weight, double cost)>();
 
             // проходимся по каждой строчке таблицы-результата
@@ -146,7 +146,7 @@ namespace RestaurantsClasses
         // функция получения блюд по онлайн заказу
         public static Dictionary<Meal, int> GetMeals(OnlineOrder order)
         {
-            var rawData = ExecuteQuery($"SELECT * FROM \"Meal_to_OnlineOrder\" WHERE online_order_id = {order.Id}");
+            var rawData = ExecuteQuery($"SELECT * FROM \"Meal_to_OnlineOrder\" WHERE online_order_id = {order.id}");
             var result = new Dictionary<Meal, int>();
 
             // проходимся по каждой строчке таблицы-результата
@@ -174,7 +174,7 @@ namespace RestaurantsClasses
             int id = 1;
             if (clients.Count > 0)
             {
-                id = clients.Last().Id + 1;
+                id = clients.Last().id + 1;
             }
             ExecuteQuery($"INSERT INTO \"Client\" VALUES ({id}, '{username}', '', '', '{password}')");
             return GetObject<Client>($"id = {id}").FirstOrDefault();

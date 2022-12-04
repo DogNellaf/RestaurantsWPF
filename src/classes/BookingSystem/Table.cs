@@ -25,7 +25,7 @@
         // текстовый вывод
         public override string ToString()
         {
-            return $"Столик {Id}, количество мест {SeatsCount}";
+            return $"Столик {id}, количество мест {SeatsCount}";
         }
     }
 }

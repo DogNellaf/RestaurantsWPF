@@ -5,21 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ui"
         mc:Ignorable="d"
-        Title="ClientWorkspace" Height="450" Width="800" WindowState="Maximized">
+        Title="ClientWorkspace" Height="1080" Width="1920" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Margin="0,48,400,0">
-            <DataGrid x:Name="orderGrid" Height="374" d:ItemsSource="{d:SampleData ItemCount=5}" Width="392" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <DataGrid x:Name="orderGrid" Height="999" d:ItemsSource="{d:SampleData ItemCount=5}" Width="1491" HorizontalAlignment="Left"/>
         </StackPanel>
         <Label Content="Ваши заказы" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="33" Width="390" FontSize="18"/>
-        <Label Content="Выбрать по дате" HorizontalAlignment="Right" Margin="0,241,180,0" VerticalAlignment="Top" Height="40" Width="220" FontSize="24"/>
-        <DatePicker x:Name="datePicker" HorizontalAlignment="Right" Margin="0,241,10,0" VerticalAlignment="Top" Height="40" Width="160"/>
-        <Label Content="Удалить заказ по id" HorizontalAlignment="Right" Margin="0,286,175,0" VerticalAlignment="Top" Height="50" Width="225" FontSize="24"/>
-        <TextBox HorizontalAlignment="Left" Margin="630,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="50"/>
-        <CheckBox Content="Включить сортировку по дате" HorizontalAlignment="Right" Margin="0,0,10,58" VerticalAlignment="Bottom" Height="35" Width="390" FontSize="24"/>
-        <Button Content="Добавить заказ" HorizontalAlignment="Left" Margin="400,0,0,10" VerticalAlignment="Bottom" Height="48" Width="390" FontSize="24"/>
+        <Label Content="Выбрать по дате" HorizontalAlignment="Right" Margin="0,48,15,0" VerticalAlignment="Top" Height="40" Width="380" FontSize="24" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.204"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <DatePicker x:Name="datePicker" HorizontalAlignment="Right" Margin="0,93,10,0" VerticalAlignment="Top" Height="48" Width="385" FontSize="24"/>
+        <Label Content="Удалить заказ по id" HorizontalAlignment="Right" Margin="0,146,10,0" VerticalAlignment="Top" Height="50" Width="390" FontSize="24"/>
+        <TextBox HorizontalAlignment="Right" Margin="0,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="395" Height="50" FontSize="24"/>
+        <CheckBox Content="Включить сортировку по дате" HorizontalAlignment="Right" Margin="0,0,10,63" VerticalAlignment="Bottom" Height="35" Width="390" FontSize="24"/>
+        <Button Content="Добавить заказ" HorizontalAlignment="Right" Margin="0,0,0,12" VerticalAlignment="Bottom" Height="48" Width="390" FontSize="24"/>
+        <Button Content="Удалить" HorizontalAlignment="Right" Margin="0,256,2,0" VerticalAlignment="Top" Height="48" Width="390" FontSize="24" HorizontalContentAlignment="Center"/>
 
     </Grid>
 </Window>
