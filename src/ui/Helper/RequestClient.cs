@@ -93,6 +93,14 @@ namespace ui.Helper
             return JsonConvert.DeserializeObject<List<OnlineOrder>>(result);
         }
 
+        // получение заказов по пользователю
+        public static List<OfflineOrder> NewOrders()
+        {
+            var result = SendRequest($"api/neworders");
+
+            return JsonConvert.DeserializeObject<List<OfflineOrder>>(result);
+        }
+
         // получение названия должности по id
         public static string GetPositionName(int id) => SendRequest($"api/getpositionname?id={id}");
 

@@ -26,6 +26,7 @@ namespace ui
         {
             InitializeComponent();
             _previous = previous;
+            ordersGrid.ItemsSource = RequestClient.NewOrders();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)

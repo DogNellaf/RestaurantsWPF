@@ -85,6 +85,12 @@ namespace RestaurantsDataApi.Controllers
             return Database.GetObject<OnlineOrder>($"client_id = {client_id}");
         }
 
+        public List<OfflineOrder> NewOrders()
+        {
+            //TODO: делать подгрузку из базы
+            return Database.GetObject<OfflineOrder>($"status_id = {1}");
+        }
+
 
         public string GetPositionName(int id)
         {
