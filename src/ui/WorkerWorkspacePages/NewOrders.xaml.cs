@@ -1,4 +1,5 @@
-﻿using RestaurantsClasses.WorkersSystem;
+﻿using RestaurantsClasses.Enums;
+using RestaurantsClasses.WorkersSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,23 +17,74 @@ using ui.Helper;
 
 namespace ui
 {
-    /// <summary>
-    /// Логика взаимодействия для NewOrders.xaml
-    /// </summary>
+    
+    class Item
+    {
+        public OrderStatus Status { get; set; }
+        public int TableNum { get; set; }
+        public int Id { get; set; }
+    }
+
     public partial class NewOrders : Window
     {
         private Window _previous;
-        public NewOrders(Window previous)
+        private Worker _worker;
+        public NewOrders(Window previous, Worker worker)
         {
             InitializeComponent();
             _previous = previous;
-            ordersGrid.ItemsSource = RequestClient.NewOrders();
+            _worker = worker;
+            var orders = RequestClient.NewOrders();
+
+            var buttonTemplate = new FrameworkElementFactory(typeof(Button));
+            buttonTemplate.SetBinding(Button.ContentProperty, new Binding("Name"));
+            buttonTemplate.AddHandler(
+                Button.ClickEvent,
+                new RoutedEventHandler((o, e) => MessageBox.Show("hi"))
+            );
+            ordersGrid.Columns.Add(
+                new DataGridTextColumn()
+                {
+                    Header = "Статус",
+                    Binding = new Binding("Status"),
+                    Width = 110
+                }
+            );
+
+            ordersGrid.Columns.Add(
+                new DataGridTextColumn()
+                {
+                    Header = "Столик",
+                    Binding = new Binding("TableNum"),
+                    Width = 110
+                }
+            );
+
+            ordersGrid.Columns.Add(
+                new DataGridTemplateColumn()
+                {
+                    Header = "Закрепить за собой",
+                    CellTemplate = new DataTemplate() { VisualTree = buttonTemplate },
+                    Width = 200
+                }
+            );
+                
+
+            foreach (var order in orders)
+            {
+                ordersGrid.Items.Add(new Item() { Status = order.Status, TableNum = order.TableId, Id = order.id });
+            }
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             _previous.Show();
             Close();
+        }
+        private void setMeButton(object sender, RoutedEventArgs e, int orderId)
+        {
+            RequestClient.SetOrderToWorker(orderId, _worker.id);
+            exitButton_Click(sender, e);
         }
     }
 }

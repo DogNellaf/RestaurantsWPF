@@ -22,16 +22,19 @@ namespace RestaurantsClasses
         //private static void Quit() { }
 
         //функция получения объектов из базы, где Т - любой наследник класса Model
-        public static List<T> GetObject<T>(string where = "") where T : Model
+        public static List<T> GetObject<T>(string where = "", string name = "") where T : Model
         {
             // создаем пустой список объектов
             List<T> objects = new();
 
+            if (name == "")
+                name = typeof(T).Name;
+
             // проверяем, есть ли условие
-            string query = $"SELECT * FROM \"{typeof(T).Name}\"";
+            string query = $"SELECT * FROM \"{name}\"";
             if (where != "")
             {
-                query = $"SELECT * FROM \"{typeof(T).Name}\" where {where}";
+                query = $"SELECT * FROM \"{name}\" where {where}";
             }
 
             // кидаем запрос на выборку

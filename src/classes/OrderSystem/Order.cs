@@ -9,10 +9,10 @@ namespace RestaurantsClasees.OrderSystem
     public class OfflineOrder: Model
     {
         // id официанта
-        public int ServerId;
+        public int ServerId = -1;
 
         // id столика
-        public int TableId;
+        public int TableId = -1;
 
         // блюда в заказе
         //public Dictionary<Meal, int> Meals { get; }
@@ -24,7 +24,7 @@ namespace RestaurantsClasees.OrderSystem
         public OrderStatus Status { get; set; }
 
         // дата
-        public DateTime Created { get; }
+        public DateTime Created { get; set; }
 
         // стол
         //public Table Table => Database.GetObject<Table>($"id = {_table_id}").FirstOrDefault();
@@ -44,9 +44,22 @@ namespace RestaurantsClasees.OrderSystem
         public OfflineOrder(object[] items) : base((int)items[0])
         {
             Status = (OrderStatus)((int)items[1]);
-            Created = (DateTime)items[1];
-            TableId = (int)items[2];
-            ServerId = (int)items[3];
+            Created = (DateTime)items[2];
+
+            if (!string.IsNullOrEmpty(items[3].ToString()))
+            {
+                TableId = (int)items[3];
+            }
+
+            if (!string.IsNullOrEmpty(items[4].ToString()))
+            {
+                ServerId = (int)items[4];
+            }
+        }
+
+        public OfflineOrder()
+        {
+
         }
 
         // текстовый вывод
