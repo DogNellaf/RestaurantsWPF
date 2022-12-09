@@ -17,28 +17,18 @@ using ui.Helper;
 namespace ui
 {
     /// <summary>
-    /// Логика взаимодействия для WorkerWorkspace.xaml
+    /// Логика взаимодействия для NewOrders.xaml
     /// </summary>
-    public partial class WorkerWorkspace : Window
+    public partial class NewOrders : Window
     {
         private Window _previous;
-        private Worker _worker;
-        public WorkerWorkspace(Window previous, Worker worker)
+        public NewOrders(Window previous)
         {
             InitializeComponent();
             _previous = previous;
-            _worker = worker;
-
-            nameLabel.Content = $"Добро пожаловать, {worker.FirstName} {worker.LastName}!";
-            roleLabel.Content = $"{RequestClient.GetPositionName(worker.PositionId)}";
-
-            if (RequestClient.CheckIsItAdmin(worker.PositionId))
-            {
-
-            }
         }
 
-        private void authButton_Copy2_Click(object sender, RoutedEventArgs e)
+        private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             _previous.Show();
             Close();

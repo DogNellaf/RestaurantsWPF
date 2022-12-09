@@ -12,13 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="WorkerAuth.xaml">
+    <Page Update="WorkerWorkspacePages\WorkerAuth.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Новая папка\" />
   </ItemGroup>
 
 </Project>
