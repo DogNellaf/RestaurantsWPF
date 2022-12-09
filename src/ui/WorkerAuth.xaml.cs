@@ -31,10 +31,10 @@ namespace ui
         {
             var username = usernameTextBox.Text;
             var password = passwordTextBox.Text;
-            var client = RequestClient.AuthWorker(username, password);
-            if (client is not null)
+            var worker = RequestClient.AuthWorker(username, password);
+            if (worker is not null)
             {
-                new WorkerWorkspace(this).Show();
+                new WorkerWorkspace(this, worker).Show();
                 Hide();
             }
             else

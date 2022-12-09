@@ -7,16 +7,16 @@ namespace RestaurantsClasses.WorkersSystem
     {
 
         // название должности
-        public string Name { get; }
+        public string Name { get; set; }
 
         // стандартный оклад
-        public double Salary { get; }
+        public double Salary { get; set; }
 
         // процентный размер премии
-        public double Prize { get; }
+        public double Prize { get; set; }
 
         // уровень прав
-        public WorkerRole Role { get; }
+        public WorkerRole Role { get; set; }
 
         // конструктор
         public Position(int id, string name, double salary, double prize, WorkerRole role): base(id)

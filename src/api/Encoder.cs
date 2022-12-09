@@ -9,12 +9,12 @@ namespace RestaurantsDataApi
         {
             var Sb = new StringBuilder();
 
-            using (SHA256 hash = SHA256.Create())
+            using (var hash = SHA256.Create())
             {
                 var enc = Encoding.UTF8;
                 var result = hash.ComputeHash(enc.GetBytes(raw));
 
-                foreach (Byte b in result)
+                foreach (var b in result)
                     Sb.Append(b.ToString("x2"));
             }
 

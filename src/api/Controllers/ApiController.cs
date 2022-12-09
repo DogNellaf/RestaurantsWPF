@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses;
 using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
+using RestaurantsClasses.Enums;
 
 namespace RestaurantsDataApi.Controllers
 {
@@ -52,7 +55,7 @@ namespace RestaurantsDataApi.Controllers
             return null;
         }
 
-        public Worker AuthWorker(string username, string password)
+        public string AuthWorker(string username, string password)
         {
             var worker = Database.GetObject<Worker>($"username = '{username}'").FirstOrDefault();
 
@@ -60,7 +63,7 @@ namespace RestaurantsDataApi.Controllers
                 return null;
 
             if (Encoder.CheckHash(password, worker.Password))
-                return worker;
+                return JsonConvert.SerializeObject(worker);
 
             return null;
         }
@@ -82,5 +85,23 @@ namespace RestaurantsDataApi.Controllers
             return Database.GetObject<OnlineOrder>($"client_id = {client_id}");
         }
 
+
+        public string GetPositionName(int id)
+        {
+            var position = Database.GetObject<Position>($"id = {id}").FirstOrDefault();
+            if (position is null)
+                return string.Empty;
+
+            return position.Name;
+        }
+
+        public bool IsItAdmin(int id)
+        {
+            var position = Database.GetObject<Position>($"id = {id}").FirstOrDefault();
+            if (position is null)
+                return false;
+
+            return position.Role == WorkerRole.Администратор;
+        }
     }
 }

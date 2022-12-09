@@ -12,13 +12,13 @@ namespace RestaurantsClasses.BookingSystem
         public int TableId;
 
         // дата и время, на которое забронировано
-        public DateTime Time { get; }
+        public DateTime Time { get; set; }
 
         // клиент
         //public Client Client => Database.GetObject<Client>($"where id = {_client_id}").FirstOrDefault();
 
         // оплачена ли бронь
-        public bool IsPaid { get; }
+        public bool IsPaid { get; set; }
 
         // стол
         //public Table Table => Database.GetObject<Table>($"where id = {_table_id}").FirstOrDefault();

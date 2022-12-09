@@ -21,7 +21,7 @@ namespace RestaurantsClasees.OrderSystem
         //public double Summa => Meals.Sum(x => x.Key.Cost * x.Value);
 
         // статус заказа
-        public OrderStatus Status { get; private set; }
+        public OrderStatus Status { get; set; }
 
         // дата
         public DateTime Created { get; }

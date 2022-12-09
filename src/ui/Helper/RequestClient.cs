@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using RestaurantsClasees;
 using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses;
@@ -28,7 +29,7 @@ namespace ui.Helper
         {
             string raw = SendRequest($"{typeof(T).Name}");
 
-            return JsonSerializer.Deserialize<List<T>>(raw);
+            return JsonConvert.DeserializeObject<List<T>>(raw);
         }
 
         private static string SendRequest(string url)
@@ -51,7 +52,7 @@ namespace ui.Helper
 
             try
             {
-                return JsonSerializer.Deserialize<Client>(result);
+                return JsonConvert.DeserializeObject<Client>(result);
             }
             catch
             {
@@ -67,7 +68,7 @@ namespace ui.Helper
 
             try
             {
-                return JsonSerializer.Deserialize<Worker>(result);
+                return JsonConvert.DeserializeObject<Worker>(result);
             }
             catch
             {
@@ -81,7 +82,7 @@ namespace ui.Helper
         {
             var result = SendRequest($"api/adduser?username={username}&password={password}");
 
-            return JsonSerializer.Deserialize<Client>(result);
+            return JsonConvert.DeserializeObject<Client>(result);
         }
 
         // получение заказов по пользователю
@@ -89,7 +90,13 @@ namespace ui.Helper
         {
             var result = SendRequest($"api/onlineorders?client_id={client.id}");
 
-            return JsonSerializer.Deserialize<List<OnlineOrder>>(result);
+            return JsonConvert.DeserializeObject<List<OnlineOrder>>(result);
         }
+
+        // получение названия должности по id
+        public static string GetPositionName(int id) => SendRequest($"api/getpositionname?id={id}");
+
+        // получение уровня доступа по id должности
+        public static bool CheckIsItAdmin(int id) => bool.Parse(SendRequest($"api/isitadmin?id={id}"));
     }
 }

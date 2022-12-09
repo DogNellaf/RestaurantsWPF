@@ -1,4 +1,5 @@
-﻿using RestaurantsClasses.Enums;
+﻿using Newtonsoft.Json;
+using RestaurantsClasses.Enums;
 
 namespace RestaurantsClasses.WorkersSystem
 {
@@ -9,19 +10,19 @@ namespace RestaurantsClasses.WorkersSystem
         public int PositionId;
 
         // имя
-        public string FirstName { get; }
+        public string FirstName { get; set; }
 
         // фамилия 
-        public string LastName { get; }
+        public string LastName { get; set; }
 
         // телефон 
-        public string? Phone { get; }
+        public string? Phone { get; set; }
 
         // имя пользователя
-        public string Username { get; }
+        public string Username { get; set; }
 
         // имя пользователя
-        public string Password { get; }
+        public string Password { get; set; }
 
         // должность сотрудника
         //public Position Position => Database.GetObject<Position>($"id = {_position_id}").FirstOrDefault();

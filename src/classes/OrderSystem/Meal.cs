@@ -8,16 +8,16 @@ namespace RestaurantsClasees.OrderSystem
     {
 
         // название
-        public string Name { get; }
+        public string Name { get; set; }
 
         // стоимость
-        public double Cost { get; }
+        public double Cost { get; set; }
 
         // вес
-        public double Weight { get; }
+        public double Weight { get; set; }
 
         // количество порций
-        public int ServingsNumber { get; }
+        public int ServingsNumber { get; set; }
 
         // ингредиенты
         public Dictionary<Ingredient, double> GetIngredients() => Database.GetIngredients(this);

@@ -5,10 +5,10 @@
     {
 
         // название компании
-        public string Name { get; }
+        public string Name { get; set; }
 
         // адрес
-        public string Address { get; }
+        public string Address { get; set; }
 
         // какие предлагает ингредиенты 
         //public Dictionary<Ingredient, (double weight, double cost)> Goods => Database.GetGoods(this);

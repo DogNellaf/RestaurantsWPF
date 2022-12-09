@@ -8,13 +8,13 @@ namespace RestaurantsClasses.Obsolete
     public class Ingerdient_to_Meal : Model
     {
         // заказ
-        public Ingredient Ingredient { get; }
+        public Ingredient Ingredient { get; set; }
 
         // блюдо
-        public Meal Meal { get; }
+        public Meal Meal { get; set; }
 
         // вес
-        public double Weight { get; }
+        public double Weight { get; set; }
 
         // конструктор
         public Ingerdient_to_Meal(int id, Ingredient ingredient, Meal meal, double weight) : base(id)

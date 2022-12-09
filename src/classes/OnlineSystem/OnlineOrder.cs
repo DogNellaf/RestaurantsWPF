@@ -8,7 +8,7 @@ namespace RestaurantsClasses.OnlineSystem
         public int ClientId;
 
         // дата заказа
-        public DateTime created { get; }
+        public DateTime created { get; set; }
 
         // клиент, который заказал
        // public Client GetClient() => Database.GetObject<Client>($"id = {_client_id}").FirstOrDefault();
@@ -17,10 +17,10 @@ namespace RestaurantsClasses.OnlineSystem
         public Dictionary<Meal, int> GetMeals() => Database.GetMeals(this);
 
         // адрес заказа
-        public string address { get; }
+        public string address { get; set; }
 
         // завершен ли
-        public bool isComplited { get; private set; }
+        public bool isComplited { get; set; }
 
         // конструктор
         public OnlineOrder(int id, DateTime date, int client_id, string address): base(id)

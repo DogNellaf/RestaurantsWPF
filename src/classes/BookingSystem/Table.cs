@@ -5,10 +5,10 @@
     {
 
         // количество мест
-        public int SeatsCount { get; }
+        public int SeatsCount { get; set; }
 
         // занят ли в текущий момент
-        public bool IsReserved { get; }
+        public bool IsReserved { get; set; }
 
         // конструктор
         public Table(int id, int seatsCount, bool isReserved): base(id)
