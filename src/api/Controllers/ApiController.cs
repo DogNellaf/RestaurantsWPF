@@ -107,7 +107,7 @@ namespace RestaurantsDataApi.Controllers
             if (position is null)
                 return false;
 
-            return position.Role == WorkerRole.Администратор;
+            return position.Role == WorkerRole.Admin;
         }
     }
 }

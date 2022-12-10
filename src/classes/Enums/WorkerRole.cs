@@ -2,8 +2,8 @@
 {
     public enum WorkerRole
     {
-        Сотрудник = 1,
-        Менеджер = 2,
-        Администратор = 3
+        Worker = 1,
+        Manager = 2,
+        Admin = 3
     }
 }
