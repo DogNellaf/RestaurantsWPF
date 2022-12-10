@@ -47,7 +47,7 @@ namespace ui
 
         private void newOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            new NewOrders(this).Show();
+            new NewOrders(this, _worker).Show();
             Hide();
         }
     }
