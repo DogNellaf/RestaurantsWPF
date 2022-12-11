@@ -26,7 +26,7 @@ namespace ui
         {
             _client = client;
             InitializeComponent();
-            orderGrid.ItemsSource = RequestClient.GetOrders(client);
+            orderGrid.ItemsSource = RequestClient.GetOnlineOrdersByClient(client);
         }
     }
 }

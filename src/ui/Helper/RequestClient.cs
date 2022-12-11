@@ -86,11 +86,19 @@ namespace ui.Helper
         }
 
         // получение заказов по пользователю
-        public static List<OnlineOrder> GetOrders(Client client)
+        public static List<OnlineOrder> GetOnlineOrdersByClient(Client client)
         {
             var result = SendRequest($"api/onlineorders?client_id={client.id}");
 
             return JsonConvert.DeserializeObject<List<OnlineOrder>>(result);
+        }
+
+        // получение заказов по пользователю
+        public static List<OfflineOrder> GetAllOfflineOrders()
+        {
+            var result = SendRequest($"api/offlineorders");
+
+            return JsonConvert.DeserializeObject<List<OfflineOrder>>(result);
         }
 
         // получение заказов по пользователю

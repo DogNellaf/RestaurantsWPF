@@ -20,9 +20,9 @@ namespace ui
     
     class Item
     {
-        public OrderStatus Status { get; set; }
+        public OrderStatus Status { get; set; }згидшс 
         public int TableNum { get; set; }
-        public int Id { get; set; }
+        public int Id { get; set; }ad 
         public string ButtonText { get; set; }
     }
 

@@ -79,17 +79,11 @@ namespace RestaurantsDataApi.Controllers
             return Database.AddUser(username, hash);
         }
 
-        public List<OnlineOrder> OnlineOrders(int client_id)
-        {
-            return Database.GetObject<OnlineOrder>($"client_id = {client_id}");
-        }
+        public List<OfflineOrder> OfflineOrders() => Database.GetObject<OfflineOrder>("", "Order");
 
-        public List<OfflineOrder> NewOrders()
-        {
-            //TODO: делать подгрузку из базы
-            return Database.GetObject<OfflineOrder>($"status_id = {1}", "Order");
-        }
+        public List<OnlineOrder> OnlineOrders(int client_id) => Database.GetObject<OnlineOrder>($"client_id = {client_id}");
 
+        public List<OfflineOrder> NewOrders() => Database.GetObject<OfflineOrder>($"status_id = {1}", "Order");
 
         public string GetPositionName(int id)
         {
