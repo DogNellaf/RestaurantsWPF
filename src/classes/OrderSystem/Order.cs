@@ -9,10 +9,10 @@ namespace RestaurantsClasees.OrderSystem
     public class OfflineOrder: Model
     {
         // id официанта
-        public int ServerId = -1;
+        public int ServerId { get; set; } = -1;
 
         // id столика
-        public int TableId = -1;
+        public int TableId { get; set; } = -1;
 
         // блюда в заказе
         //public Dictionary<Meal, int> Meals { get; }

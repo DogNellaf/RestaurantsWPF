@@ -182,5 +182,8 @@ namespace RestaurantsClasses
             ExecuteQuery($"INSERT INTO \"Client\" VALUES ({id}, '{username}', '', '', '{password}')");
             return GetObject<Client>($"id = {id}").FirstOrDefault();
         }
+
+        // функция закрепления оффлайн заказа за сотрудником
+        public static void SetOrderToWorker(int order_id, int worker_id) => ExecuteQuery($"UPDATE \"Order\" SET worker_id = {worker_id}, status_id = 2 WHERE id = {order_id}");
     }
 }

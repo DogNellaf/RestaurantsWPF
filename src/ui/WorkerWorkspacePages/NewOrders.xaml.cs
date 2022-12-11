@@ -23,6 +23,7 @@ namespace ui
         public OrderStatus Status { get; set; }
         public int TableNum { get; set; }
         public int Id { get; set; }
+        public string ButtonText { get; set; }
     }
 
     public partial class NewOrders : Window
@@ -38,11 +39,10 @@ namespace ui
 
             var buttonTemplate = new FrameworkElementFactory(typeof(Button));
             buttonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
-            buttonTemplate.Text = "Закрепить за собой";
-            buttonTemplate.AddHandler(
-                Button.ClickEvent, 
-                new RoutedEventHandler((o, e) => setMeButton(o,e,buttonTemplate.Name))
-            );
+            buttonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText"));
+            //buttonTemplate.Text = "Закрепить за собой";
+            buttonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => setMeButton(o,e)));
+
             ordersGrid.Columns.Add(
                 new DataGridTextColumn()
                 {
@@ -73,7 +73,7 @@ namespace ui
 
             foreach (var order in orders)
             {
-                ordersGrid.Items.Add(new Item() { Status = order.Status, TableNum = order.TableId, Id = order.id });
+                ordersGrid.Items.Add(new Item() { Status = order.Status, TableNum = order.TableId, Id = order.id, ButtonText = $"Закрепить за собой заказ {order.id}" });
             }
         }
 
@@ -82,8 +82,9 @@ namespace ui
             _previous.Show();
             Close();
         }
-        private void setMeButton(object sender, RoutedEventArgs e, string rawOrderId)
+        private void setMeButton(object sender, RoutedEventArgs e)
         {
+            string rawOrderId = ((Button)sender).Content.ToString().Split(' ').Last();
             if (!int.TryParse(rawOrderId, out int orderId))
                 return;
 

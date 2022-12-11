@@ -14,7 +14,7 @@
         <Label x:Name="roleLabel" Content="Должность" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Width="209" FontSize="20" VerticalContentAlignment="Bottom"/>
         <Button x:Name="exportButton" Content="Экспорт заказов" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="40" Width="372" FontSize="24" Margin="0,384,0,0" IsEnabled="False"/>
         <Button x:Name="addWorkerButton" Content="Добавить сотрудника" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="40" Width="372" FontSize="24" Margin="0,0,0,50" IsEnabled="False"/>
-        <Button x:Name="exitButton" Content="Выход" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="209" FontSize="24" IsEnabled="False" IsCancel="True" Click="exitButton_Click"/>
+        <Button x:Name="exitButton" Content="Выход" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="209" FontSize="24" IsCancel="True" Click="exitButton_Click"/>
 
     </Grid>
 </Window>

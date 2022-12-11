@@ -108,6 +108,6 @@ namespace ui.Helper
         public static bool CheckIsItAdmin(int id) => bool.Parse(SendRequest($"api/isitadmin?id={id}"));
 
         // закрепить столик за работником
-        public static bool SetOrderToWorker(int order_id, int worker_id) => bool.Parse(SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}"));
+        public static void SetOrderToWorker(int order_id, int worker_id) => SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}");
     }
 }

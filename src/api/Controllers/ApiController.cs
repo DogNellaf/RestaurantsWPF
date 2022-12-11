@@ -108,5 +108,7 @@ namespace RestaurantsDataApi.Controllers
 
             return position.Role == WorkerRole.Admin;
         }
+
+        public void SetOrderToWorker(int order_id, int worker_id) => Database.SetOrderToWorker(order_id, worker_id);
     }
 }
