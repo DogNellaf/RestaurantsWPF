@@ -37,7 +37,7 @@ namespace ui
             if (RequestClient.CheckIsItAdmin(worker.PositionId))
             {
                 exportButton.IsEnabled = true;
-                addWorkerButton.IsEnabled = true;
+                editorWorkerButton.IsEnabled = true;
             }
         }
 
@@ -77,6 +77,24 @@ namespace ui
                 File.WriteAllText(saveFileDialog1.FileName, csv);
                 MessageBox.Show($"Файл успешно сохранен по пути: {saveFileDialog1.FileName}");
             }
+        }
+
+        // посмотреть заказы текущего работника
+        private void yourOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // посмотреть онлайн заказы
+        private void onlineOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // открыть редактор работников
+        private void editorWorkerButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

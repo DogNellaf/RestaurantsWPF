@@ -20,10 +20,11 @@ namespace ui
     
     class Item
     {
-        public OrderStatus Status { get; set; }згидшс 
+        public OrderStatus Status { get; set; } 
         public int TableNum { get; set; }
-        public int Id { get; set; }ad 
+        public int Id { get; set; }
         public string ButtonText { get; set; }
+        public DateTime Created { get; set; }
     }
 
     public partial class NewOrders : Window
@@ -42,6 +43,15 @@ namespace ui
             buttonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText"));
             //buttonTemplate.Text = "Закрепить за собой";
             buttonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => setMeButton(o,e)));
+
+            ordersGrid.Columns.Add(
+                new DataGridTextColumn()
+                {
+                    Header = "Когда был создан",
+                    Binding = new Binding("Created"),
+                    Width = 200
+                }
+            );
 
             ordersGrid.Columns.Add(
                 new DataGridTextColumn()
@@ -73,8 +83,14 @@ namespace ui
 
             foreach (var order in orders)
             {
-                ordersGrid.Items.Add(new Item() { Status = order.Status, TableNum = order.TableId, Id = order.id, ButtonText = $"Закрепить за собой заказ {order.id}" });
+                ordersGrid.Items.Add(new Item() {
+                    Created = order.Created,
+                    Status = order.Status, 
+                    TableNum = order.TableId, 
+                    Id = order.id, 
+                    ButtonText = $"Закрепить за собой заказ {order.id}" });
             }
+
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
