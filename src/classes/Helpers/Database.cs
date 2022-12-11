@@ -147,10 +147,10 @@ namespace RestaurantsClasses
         }
 
         // функция получения блюд по онлайн заказу
-        public static Dictionary<Meal, int> GetMeals(OnlineOrder order)
+        public static List<Meal> GetOfflineMeals(int order_id)
         {
-            var rawData = ExecuteQuery($"SELECT * FROM \"Meal_to_OnlineOrder\" WHERE online_order_id = {order.id}");
-            var result = new Dictionary<Meal, int>();
+            var rawData = ExecuteQuery($"SELECT * FROM \"Meal_to_Order\" WHERE order_id = {order_id}");
+            var result = new List<Meal>();
 
             // проходимся по каждой строчке таблицы-результата
             foreach (DataRow row in rawData.Rows)
@@ -160,15 +160,41 @@ namespace RestaurantsClasses
                  
                 int id = (int)parameters[0];
                 var count = (int)parameters[2];
-
-                // создаем новый объект класса Т
+                var del_count = (int)parameters[3];
                 var meal = GetObject<Meal>($"id = {id}").FirstOrDefault();
 
-                // добавляем в список
-                result.Add(meal, count);
+                for (int i = 0; i < count - del_count; i++)
+                {
+                    // добавляем в список
+                    result.Add(meal);
+                }
             }
             return result;
         }
+
+        // функция получения блюд по офлайн заказу
+        //public static Dictionary<Meal, int> GetOfflineMeals(int order_id)
+        //{
+        //    var rawData = ExecuteQuery($"SELECT * FROM \"Meal_to_Order\" WHERE online_order_id = {order_id}");
+        //    var result = new Dictionary<Meal, int>();
+
+        //    // проходимся по каждой строчке таблицы-результата
+        //    foreach (DataRow row in rawData.Rows)
+        //    {
+        //        // в конструктор передаем единственный параметр - все столбцы строки
+        //        var parameters = row.ItemArray;
+
+        //        int id = (int)parameters[0];
+        //        var count = (int)parameters[2];
+
+        //        // создаем новый объект класса Т
+        //        var meal = GetObject<Meal>($"id = {id}").FirstOrDefault();
+
+        //        // добавляем в список
+        //        result.Add(meal, count);
+        //    }
+        //    return result;
+        //}
 
         // функция добавления пользователя
         public static Client AddUser(string username, string password)
@@ -188,5 +214,9 @@ namespace RestaurantsClasses
 
         // функция закрепления оффлайн заказа за сотрудником
         public static void SetOrderComplete(int order_id) => ExecuteQuery($"UPDATE \"Order\" SET status_id = 3 WHERE id = {order_id}");
+
+        // функция доставки блюда в офлайн заказе
+        public static void DeliverOfflineMeal(int order_id, int meal_id) => ExecuteQuery($"UPDATE \"Meal_to_Order\" SET received_count = received_count + 1 WHERE meal_id = {meal_id} AND order_id = {order_id}");
+
     }
 }

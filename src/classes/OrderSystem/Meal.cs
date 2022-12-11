@@ -39,6 +39,11 @@ namespace RestaurantsClasees.OrderSystem
             ServingsNumber = (int)items[4];
         }
 
+        public Meal()
+        {
+
+        }
+
         // текстовый вывод
         public override string ToString()
         {

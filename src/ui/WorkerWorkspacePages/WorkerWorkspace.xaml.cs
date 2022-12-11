@@ -1,20 +1,9 @@
 ﻿using Microsoft.Win32;
 using RestaurantsClasses.WorkersSystem;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ui.Helper;
+using ui.WorkerWorkspacePages;
 
 namespace ui
 {
@@ -38,20 +27,11 @@ namespace ui
             {
                 exportButton.IsEnabled = true;
                 editorWorkerButton.IsEnabled = true;
+                dishesEditorButton.IsEnabled = true;
+                ingredientsEditorButton.IsEnabled = true;
             }
         }
 
-        private void exitButton_Click(object sender, RoutedEventArgs e)
-        {
-            _previous.Show();
-            Close();
-        }
-
-        private void newOrdersButton_Click(object sender, RoutedEventArgs e)
-        {
-            new NewOrders(this, _worker).Show();
-            Hide();
-        }
 
         // экпорт всех оффлайн и онлайн заказов в csv формате
         private void exportButton_Click(object sender, RoutedEventArgs e)
@@ -79,10 +59,26 @@ namespace ui
             }
         }
 
+        // кнопка выхода
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            _previous.Show();
+            Close();
+        }
+
+        // переход на страницу с новыми заказами
+        private void newOrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            new NewOrders(this, _worker).Show();
+            Hide();
+        }
+
+
         // посмотреть заказы текущего работника
         private void yourOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new WorkerOrders(this, _worker).Show();
+            Hide();
         }
 
         // посмотреть онлайн заказы

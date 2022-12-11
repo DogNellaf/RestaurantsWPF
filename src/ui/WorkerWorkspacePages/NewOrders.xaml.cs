@@ -25,6 +25,7 @@ namespace ui
         public int Id { get; set; }
         public string ButtonText { get; set; }
         public DateTime Created { get; set; }
+        public string ButtonText2 { get; set; }
     }
 
     public partial class NewOrders : Window

@@ -1,4 +1,5 @@
-﻿using RestaurantsClasses.WorkersSystem;
+﻿using RestaurantsClasses.Enums;
+using RestaurantsClasses.WorkersSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +31,19 @@ namespace ui.WorkerWorkspacePages
             _previous = previous;
             _worker = worker;
 
-            var orders = RequestClient.GetAllOfflineOrders().Where(x => x.ServerId == _worker.id);
+            var orders = RequestClient.GetAllOfflineOrders().Where(x => x.ServerId == _worker.id && x.Status == OrderStatus.Оплачен);
 
-            var buttonTemplate = new FrameworkElementFactory(typeof(Button));
-            buttonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
-            buttonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText"));
+            var completeButtonTemplate = new FrameworkElementFactory(typeof(Button));
+            completeButtonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
+            completeButtonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText"));
             //buttonTemplate.Text = "Закрепить за собой";
-            buttonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => setCompleteButton(o, e)));
+            completeButtonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => setCompleteButton(o, e)));
+
+            var showButtonTemplate = new FrameworkElementFactory(typeof(Button));
+            showButtonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
+            showButtonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText2"));
+            //buttonTemplate.Text = "Закрепить за собой";
+            showButtonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => showMealsButton(o, e)));
 
             ordersGrid.Columns.Add(
                 new DataGridTextColumn()
@@ -44,15 +51,6 @@ namespace ui.WorkerWorkspacePages
                     Header = "Когда был создан",
                     Binding = new Binding("Created"),
                     Width = 200
-                }
-            );
-
-            ordersGrid.Columns.Add(
-                new DataGridTextColumn()
-                {
-                    Header = "Статус",
-                    Binding = new Binding("Status"),
-                    Width = 110
                 }
             );
 
@@ -68,8 +66,17 @@ namespace ui.WorkerWorkspacePages
             ordersGrid.Columns.Add(
                 new DataGridTemplateColumn()
                 {
-                    Header = "Закрепить за собой",
-                    CellTemplate = new DataTemplate() { VisualTree = buttonTemplate },
+                    Header = "Отметить выполненным",
+                    CellTemplate = new DataTemplate() { VisualTree = completeButtonTemplate },
+                    Width = 200
+                }
+            );
+
+            ordersGrid.Columns.Add(
+                new DataGridTemplateColumn()
+                {
+                    Header = "Посмотреть блюда",
+                    CellTemplate = new DataTemplate() { VisualTree = showButtonTemplate },
                     Width = 200
                 }
             );
@@ -80,12 +87,23 @@ namespace ui.WorkerWorkspacePages
                 ordersGrid.Items.Add(new Item()
                 {
                     Created = order.Created,
-                    Status = order.Status,
                     TableNum = order.TableId,
-                    Id = order.id,
-                    ButtonText = $"Закрепить за собой заказ {order.id}"
+                    ButtonText = $"Отметить выполненным заказ {order.id}",
+                    ButtonText2 = $"Нажмите для просмотра блюд заказа {order.id}"
                 });
             }
+        }
+
+        private void showMealsButton(object sender, RoutedEventArgs e)
+        {
+            string rawOrderId = ((Button)sender).Content.ToString().Split(' ').Last();
+            if (!int.TryParse(rawOrderId, out int orderId))
+                return;
+
+            new OrderInfo(this, _worker, orderId).Show();
+            Hide();
+            //RequestClient.SetOrderComplete(orderId);
+            //exitButton_Click(sender, e);
         }
 
         private void setCompleteButton(object sender, RoutedEventArgs e)
@@ -94,7 +112,7 @@ namespace ui.WorkerWorkspacePages
             if (!int.TryParse(rawOrderId, out int orderId))
                 return;
 
-            RequestClient.SetOrderToWorker(orderId, _worker.id);
+            RequestClient.SetOrderComplete(orderId);
             exitButton_Click(sender, e);
         }
 

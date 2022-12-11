@@ -31,6 +31,12 @@ namespace RestaurantsDataApi.Controllers
             return Database.GetObject<Ingredient>();
         }
 
+        public string GetOfflineMeals(int order_id)
+        {
+            var rawMeals = Database.GetOfflineMeals(order_id);
+            return JsonConvert.SerializeObject(rawMeals);
+        }
+
         public IEnumerable<Ingredient> GetIngredientsByMeal(int meal_id)
         {
             var meal = Database.GetObject<Meal>($"id = {meal_id}").FirstOrDefault();
@@ -106,5 +112,7 @@ namespace RestaurantsDataApi.Controllers
         public void SetOrderToWorker(int order_id, int worker_id) => Database.SetOrderToWorker(order_id, worker_id);
 
         public void SetOrderComplete(int order_id) => Database.SetOrderComplete(order_id);
+
+        public void DeliverOfflineMeal(int order_id, int meal_id) => Database.DeliverOfflineMeal(order_id, meal_id);
     }
 }

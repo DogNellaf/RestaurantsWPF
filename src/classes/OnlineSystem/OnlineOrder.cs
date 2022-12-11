@@ -14,7 +14,7 @@ namespace RestaurantsClasses.OnlineSystem
        // public Client GetClient() => Database.GetObject<Client>($"id = {_client_id}").FirstOrDefault();
 
         // список блюд в заказе
-        public Dictionary<Meal, int> GetMeals() => Database.GetMeals(this);
+        //public Dictionary<Meal, int> GetMeals() => Database.GetMeals(this);
 
         // адрес заказа
         public string address { get; set; }

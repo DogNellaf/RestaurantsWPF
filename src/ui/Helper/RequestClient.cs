@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using RestaurantsClasees;
 using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses;
+using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 
@@ -108,6 +109,27 @@ namespace ui.Helper
 
             return JsonConvert.DeserializeObject<List<OfflineOrder>>(result);
         }
+
+
+        // получение блюд по заказу
+        public static List<Meal> GetMealsByOrder(int order_id, bool is_online=false)
+        {
+            var result = "";
+            if (is_online)
+            {
+                result = SendRequest($"api/GetOnlineMeals?order_id={order_id}");
+            }
+            else
+            {
+                result = SendRequest($"api/GetOfflineMeals?order_id={order_id}");
+            }
+            
+
+            return JsonConvert.DeserializeObject<List<Meal>>(result);
+        }
+
+        // отметить, что блюдо уже принесли
+        public static string DeliverOfflineMeal(int order_id, int meal_id) => SendRequest($"api/deliverofflinemeal?order_id={order_id}&meal_id={meal_id}");
 
         // получение названия должности по id
         public static string GetPositionName(int id) => SendRequest($"api/getpositionname?id={id}");
