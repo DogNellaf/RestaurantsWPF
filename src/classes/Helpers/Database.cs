@@ -185,5 +185,8 @@ namespace RestaurantsClasses
 
         // функция закрепления оффлайн заказа за сотрудником
         public static void SetOrderToWorker(int order_id, int worker_id) => ExecuteQuery($"UPDATE \"Order\" SET worker_id = {worker_id}, status_id = 2 WHERE id = {order_id}");
+
+        // функция закрепления оффлайн заказа за сотрудником
+        public static void SetOrderComplete(int order_id) => ExecuteQuery($"UPDATE \"Order\" SET status_id = 3 WHERE id = {order_id}");
     }
 }

@@ -117,5 +117,7 @@ namespace ui.Helper
 
         // закрепить столик за работником
         public static void SetOrderToWorker(int order_id, int worker_id) => SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}");
+        // отметить заказ выполненным
+        public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
     }
 }

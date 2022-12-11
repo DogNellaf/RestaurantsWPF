@@ -104,5 +104,7 @@ namespace RestaurantsDataApi.Controllers
         }
 
         public void SetOrderToWorker(int order_id, int worker_id) => Database.SetOrderToWorker(order_id, worker_id);
+
+        public void SetOrderComplete(int order_id) => Database.SetOrderComplete(order_id);
     }
 }
