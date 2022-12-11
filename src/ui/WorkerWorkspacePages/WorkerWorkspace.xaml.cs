@@ -22,41 +22,6 @@ namespace ui
 
             nameLabel.Content = $"Добро пожаловать, {worker.FirstName} {worker.LastName}!";
             roleLabel.Content = $"{RequestClient.GetPositionName(worker.PositionId)}";
-
-            if (RequestClient.CheckIsItAdmin(worker.PositionId))
-            {
-                exportButton.IsEnabled = true;
-                editorWorkerButton.IsEnabled = true;
-                dishesEditorButton.IsEnabled = true;
-                ingredientsEditorButton.IsEnabled = true;
-            }
-        }
-
-
-        // экпорт всех оффлайн и онлайн заказов в csv формате
-        private void exportButton_Click(object sender, RoutedEventArgs e)
-        {
-            // запись в файл
-            var saveFileDialog1 = new SaveFileDialog()
-            {
-                Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*",
-                RestoreDirectory = true
-            };
-
-            if (saveFileDialog1.ShowDialog() == true)
-            {
-                // считывание из базы 
-                var orders = RequestClient.GetAllOfflineOrders();
-                var csv = "Id;ServerId;TableId;Status;Created\n";
-
-                foreach (var order in orders)
-                {
-                    csv += $"{order.id};{order.ServerId};{order.TableId};{order.Status};{order.Created}\n";
-                }
-
-                File.WriteAllText(saveFileDialog1.FileName, csv);
-                MessageBox.Show($"Файл успешно сохранен по пути: {saveFileDialog1.FileName}");
-            }
         }
 
         // кнопка выхода
@@ -83,12 +48,6 @@ namespace ui
 
         // посмотреть онлайн заказы
         private void onlineOrdersButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        // открыть редактор работников
-        private void editorWorkerButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

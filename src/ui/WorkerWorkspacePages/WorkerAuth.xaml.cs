@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ui.AdminWorkspacePages;
 using ui.Helper;
 
 namespace ui
@@ -34,7 +35,13 @@ namespace ui
             var worker = RequestClient.AuthWorker(username, password);
             if (worker is not null)
             {
-                new WorkerWorkspace(this, worker).Show();
+                if (RequestClient.CheckIsItAdmin(worker.PositionId))
+                {
+                    new AdminWorkspace(this, worker).Show();
+                }
+                {
+                    new WorkerWorkspace(this, worker).Show();
+                }
                 Hide();
             }
             else
