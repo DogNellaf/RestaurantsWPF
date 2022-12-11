@@ -37,10 +37,11 @@ namespace ui
             var orders = RequestClient.NewOrders();
 
             var buttonTemplate = new FrameworkElementFactory(typeof(Button));
-            buttonTemplate.SetBinding(Button.ContentProperty, new Binding("Name"));
+            buttonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
+            buttonTemplate.Text = "Закрепить за собой";
             buttonTemplate.AddHandler(
-                Button.ClickEvent,
-                new RoutedEventHandler((o, e) => MessageBox.Show("hi"))
+                Button.ClickEvent, 
+                new RoutedEventHandler((o, e) => setMeButton(o,e,buttonTemplate.Name))
             );
             ordersGrid.Columns.Add(
                 new DataGridTextColumn()
@@ -81,8 +82,11 @@ namespace ui
             _previous.Show();
             Close();
         }
-        private void setMeButton(object sender, RoutedEventArgs e, int orderId)
+        private void setMeButton(object sender, RoutedEventArgs e, string rawOrderId)
         {
+            if (!int.TryParse(rawOrderId, out int orderId))
+                return;
+
             RequestClient.SetOrderToWorker(orderId, _worker.id);
             exitButton_Click(sender, e);
         }
