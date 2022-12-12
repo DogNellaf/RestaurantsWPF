@@ -245,5 +245,25 @@ namespace RestaurantsClasses
 
             return password;
         }
+
+        // создать нового сотрудника
+        public static void CreateWorker(string username, string firstName, string secondName, int phone)
+        {
+            int id = GetObject<Worker>().Count() + 1;
+
+            //TODO брать должность из базы
+            ExecuteQuery($"INSERT INTO \"Worker\" VALUES ({id}, '{firstName}', '{secondName}', {phone}, 3, '{username}', '')");
+        }
+
+        // обновить существующего сотрудника
+        public static void UpdateWorker(int worker_id, string username, string firstName, string secondName, int phone)
+        {
+            var worker = GetObject<Worker>().Where(x => x.id == worker_id).FirstOrDefault();
+            if (worker == null)
+                return;
+
+            //TODO брать должность из базы
+            ExecuteQuery($"UPDATE \"Worker\" WHERE id = {worker_id} SET first_name = '{firstName}', last_name = '{secondName}', phone = {phone}, username = '{username}'");
+        }
     }
 }

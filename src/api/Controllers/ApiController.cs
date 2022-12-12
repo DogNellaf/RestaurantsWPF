@@ -6,6 +6,7 @@ using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 using RestaurantsClasses.Enums;
+using System.Numerics;
 
 namespace RestaurantsDataApi.Controllers
 {
@@ -118,5 +119,9 @@ namespace RestaurantsDataApi.Controllers
         public void DeliverOfflineMeal(int order_id, int meal_id) => Database.DeliverOfflineMeal(order_id, meal_id);
 
         public string GenerateNewPassword(int worker_id, int admin_id) => Database.GenerateNewPassword(worker_id, admin_id);
+
+        public void CreateWorker(string username, string firstName, string secondName, int phone) => Database.CreateWorker(username, firstName, secondName, phone);
+
+        public void UpdateWorker(int worker_id, string username, string firstName, string secondName, int phone) => Database.UpdateWorker(worker_id, username, firstName, secondName, phone);
     }
 }

@@ -151,5 +151,10 @@ namespace ui.Helper
         public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
         // сгенерировать новый пароль
         public static string GenerateNewPassword(int worker_id, int admin_id) => SendRequest($"api/GenerateNewPassword?worker_id={worker_id}&admin_id={admin_id}");
+        // создать нового пользователя
+        public static string CreateWorker(string username, string firstName, string secondName, int phone) => SendRequest($"api/createworker?username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
+        // создать нового пользователя
+        public static string UpdateWorker(int worker_id, string username, string firstName, string secondName, int phone) => SendRequest($"api/updateworker?worker_id={worker_id}&username={username}&firstName={firstName}&phone={phone}");
+
     }
 }
