@@ -266,5 +266,23 @@ namespace RestaurantsClasses
             //TODO брать должность из базы
             ExecuteQuery($"UPDATE \"Worker\" WHERE id = {worker_id} SET first_name = '{firstName}', last_name = '{secondName}', phone = {phone}, username = '{username}'");
         }
+
+        // создать новое блюдо
+        public static void CreateMeal(string name, float cost, float weight, int servnumber)
+        {
+            int id = GetObject<Meal>().Count() + 1;
+
+            ExecuteQuery($"INSERT INTO \"Meal\" VALUES ({id}, '{name}', {cost}, {weight}, {servnumber})");
+        }
+
+        // обновить существующее блюдо
+        public static void UpdateMeal(int meal_id, string name, float cost, float weight, int servnumber)
+        {
+            var meal = GetObject<Meal>().Where(x => x.id == meal_id).FirstOrDefault();
+            if (meal == null)
+                return;
+
+            ExecuteQuery($"UPDATE \"Meal\" WHERE id = {meal_id} SET name = '{name}', cost = {cost}, weight = {weight}, servings_number = '{servnumber}'");
+        }
     }
 }

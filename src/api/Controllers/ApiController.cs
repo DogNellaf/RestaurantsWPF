@@ -124,6 +124,10 @@ namespace RestaurantsDataApi.Controllers
 
         public void UpdateWorker(int worker_id, string username, string firstName, string secondName, long phone) => Database.UpdateWorker(worker_id, username, firstName, secondName, phone);
 
+        public void CreateMeal(string name, float cost, float weight, int servnumber) => Database.CreateMeal(name, cost, weight, servnumber);
+
+        public void UpdateMeal(int meal_id, string name, float cost, float weight, int servnumber) => Database.UpdateMeal(meal_id, name, cost, weight, servnumber);
+
         public void Delete(string name, int id) => Database.Delete(name, id);
     }
 }

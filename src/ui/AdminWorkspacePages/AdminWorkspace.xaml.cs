@@ -38,7 +38,8 @@ namespace ui.AdminWorkspacePages
 
         public void dishesEditorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            new MealsEditor(this, _worker).Show();
         }
 
         public void ingredientsEditorButton_Click(object sender, RoutedEventArgs e)
