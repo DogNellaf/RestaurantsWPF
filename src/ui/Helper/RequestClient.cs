@@ -20,7 +20,9 @@ namespace ui.Helper
     internal static class RequestClient
     {
         // адрес сервера
-        private static string _server = "https://localhost:7173";
+        //private static string _server = "https://localhost:7173";
+
+        private static string _server = "http://92.53.115.41:5001";
 
         // порт
         //private static int _port = 7173;
