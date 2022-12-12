@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ui.AdminWorkspacePages"
         mc:Ignorable="d"
-        Title="WorkerEditor" Height="450" Width="800">
+        Title="WorkerEditor" Height="450" Width="800" WindowState="Maximized">
     <Grid>
-        
+        <Button x:Name="exitButton" Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="209" FontSize="24" IsCancel="True" Click="exitButton_Click"/>
+        <Label x:Name="nameLabel" Content="Редактор сотрудников" Margin="92,10,92,0" VerticalAlignment="Top" Height="70" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="92,80,92,80">
+            <DataGrid x:Name="workersGrid"/>
+        </Border>
+        <Label Content="Новый пароль" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="newPasswordBox" HorizontalAlignment="Left" Margin="105,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
+
     </Grid>
 </Window>

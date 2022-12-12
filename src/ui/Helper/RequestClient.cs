@@ -110,6 +110,14 @@ namespace ui.Helper
             return JsonConvert.DeserializeObject<List<OfflineOrder>>(result);
         }
 
+        // получение списка сотрудников
+        public static List<Worker> GetWorkers()
+        {
+            var result = SendRequest($"api/GetWorkers");
+
+            return JsonConvert.DeserializeObject<List<Worker>>(result);
+        }
+
 
         // получение блюд по заказу
         public static List<Meal> GetMealsByOrder(int order_id, bool is_online=false)
@@ -141,5 +149,7 @@ namespace ui.Helper
         public static void SetOrderToWorker(int order_id, int worker_id) => SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}");
         // отметить заказ выполненным
         public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
+        // сгенерировать новый пароль
+        public static string GenerateNewPassword(int worker_id, int admin_id) => SendRequest($"api/GenerateNewPassword?worker_id={worker_id}&admin_id={admin_id}");
     }
 }

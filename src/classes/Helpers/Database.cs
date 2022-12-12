@@ -1,8 +1,12 @@
 ﻿using Npgsql;
 using RestaurantsClasees.OrderSystem;
+using RestaurantsClasses.Enums;
+using RestaurantsClasses.Helpers;
 using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
+using RestaurantsClasses.WorkersSystem;
 using System.Data;
+using System.Text;
 
 namespace RestaurantsClasses
 {
@@ -217,6 +221,29 @@ namespace RestaurantsClasses
 
         // функция доставки блюда в офлайн заказе
         public static void DeliverOfflineMeal(int order_id, int meal_id) => ExecuteQuery($"UPDATE \"Meal_to_Order\" SET received_count = received_count + 1 WHERE meal_id = {meal_id} AND order_id = {order_id}");
+        // функция генерации сотруднику нового пароля
+        public static string GenerateNewPassword(int worker_id, int admin_id)
+        {
+            var admin = GetObject<Worker>($"id = {admin_id}").FirstOrDefault();
 
+            if (admin is null)
+                return "";
+
+            var position = GetObject<Position>($"id = {admin.PositionId}").FirstOrDefault();
+
+            if (position is null)
+                return "";
+
+            if (position.Role != WorkerRole.Admin)
+                return "";
+
+            string password = Generator.GenerateNewPassword();
+
+            string hash = Encoder.Encode(password);
+
+            ExecuteQuery($"UPDATE \"Worker\" SET password = '{hash}' WHERE id = {worker_id}");
+
+            return password;
+        }
     }
 }

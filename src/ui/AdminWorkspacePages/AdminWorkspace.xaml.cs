@@ -32,7 +32,8 @@ namespace ui.AdminWorkspacePages
         // открыть редактор работников
         private void editorWorkerButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            new WorkerEditor(this, _worker).Show();
         }
 
         private void dishesEditorButton_Click(object sender, RoutedEventArgs e)

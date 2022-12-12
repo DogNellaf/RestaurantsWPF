@@ -91,6 +91,8 @@ namespace RestaurantsDataApi.Controllers
 
         public List<OfflineOrder> NewOrders() => Database.GetObject<OfflineOrder>($"status_id = {1}", "Order");
 
+        public List<Worker> GetWorkers() => Database.GetObject<Worker>();
+
         public string GetPositionName(int id)
         {
             var position = Database.GetObject<Position>($"id = {id}").FirstOrDefault();
@@ -114,5 +116,7 @@ namespace RestaurantsDataApi.Controllers
         public void SetOrderComplete(int order_id) => Database.SetOrderComplete(order_id);
 
         public void DeliverOfflineMeal(int order_id, int meal_id) => Database.DeliverOfflineMeal(order_id, meal_id);
+
+        public string GenerateNewPassword(int worker_id, int admin_id) => Database.GenerateNewPassword(worker_id, admin_id);
     }
 }
