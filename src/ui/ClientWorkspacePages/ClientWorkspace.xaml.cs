@@ -28,14 +28,15 @@ namespace ui
         {
             _client = client;
             InitializeComponent();
-            nameLabel.Content = $"Добро пожаловать, {_client.FirstName} {_client.SecondName}!";
+            //nameLabel.Content = $"Добро пожаловать, {_client.FirstName} {_client.SecondName}!";
+            nameLabel.Content = $"Добро пожаловать, {_client.Username}!";
             _previous = previous;
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             _previous.Show();
-            Hide();
+            Close();
         }
 
         private void addOrderButton_Click(object sender, RoutedEventArgs e)

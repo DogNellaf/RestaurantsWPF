@@ -156,6 +156,7 @@ namespace ui.Helper
 
         public static void SetOrderToWorker(int order_id, int worker_id) => SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}");
         public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
+        public static void SetOnlineOrderComplete(int order_id) => SendRequest($"api/SetOnlineOrderComplete?order_id={order_id}");
         public static string GenerateNewPassword(int worker_id, int admin_id) => SendRequest($"api/GenerateNewPassword?worker_id={worker_id}&admin_id={admin_id}");
         public static string CreateWorker(string username, string firstName, string secondName, long phone) => SendRequest($"api/createworker?username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
         public static string UpdateWorker(int worker_id, string username, string firstName, string secondName, long phone) => SendRequest($"api/updateworker?worker_id={worker_id}&username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
@@ -167,7 +168,7 @@ namespace ui.Helper
         public static string DeleteMeal(int id) => SendRequest($"api/delete?name=Meal&id={id}");
         public static string DeleteIngredient(int id) => SendRequest($"api/delete?name=Ingredient&id={id}");
         public static string DeleteIngredientByMeal(int meal_id, int id) => SendRequest($"api/DeleteIngredientByMeal?meal_id={meal_id}&id={id}");
-        
 
+        public static string CreateOnlineOrder(int client_id, string address) => SendRequest($"api/CreateOnlineOrder?client_id={client_id}&address={address}");
     }
 }

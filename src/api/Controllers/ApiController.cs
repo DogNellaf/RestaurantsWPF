@@ -142,5 +142,11 @@ namespace RestaurantsDataApi.Controllers
         public void DeleteIngredientByMeal(int meal_id, int id) => Database.DeleteIngredientByMeal(meal_id, id);
 
         public List<OnlineOrder> GetOnlineOrders() => Database.GetObject<OnlineOrder>($"is_complited = false");
+
+        public void CreateOnlineOrder(int client_id, string address) => Database.CreateOnlineOrder(client_id, address);
+
+        public void SetOnlineOrderComplete(int order_id) => Database.SetOnlineOrderComplete(order_id);
+
+        //public void UpdateOnlineOrder(int id, string address) => Database.UpdateOnlineOrder(id, address);
     }
 }

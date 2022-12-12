@@ -55,7 +55,7 @@ namespace ui.AdminWorkspacePages
                     return;
                 }
 
-                var ingredients = RequestClient.GetObjects<Meal>();
+                var ingredients = RequestClient.GetObjects<Ingredient>();
 
                 var ingredient = ingredients.Where(x => x.Name == ingredientData.Name).FirstOrDefault();
 

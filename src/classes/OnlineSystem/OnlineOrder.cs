@@ -5,7 +5,7 @@ namespace RestaurantsClasses.OnlineSystem
     // модель онлайн заказа
     public class OnlineOrder: Model
     {
-        public int ClientId;
+        public int ClientId { get; set; }
 
         // дата заказа
         public DateTime created { get; set; }

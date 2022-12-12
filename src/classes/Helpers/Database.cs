@@ -6,6 +6,7 @@ using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 using System.Data;
+using System.Net;
 using System.Text;
 using System.Xml.Linq;
 
@@ -331,6 +332,27 @@ namespace RestaurantsClasses
 
             ExecuteQuery($"UPDATE \"Order\" SET name = '{name}' WHERE id = {id}");
         }
+
+
+        // создать новый ингредиент
+        public static void CreateOnlineOrder(int client_id, string address)
+        {
+            int id = GetObject<OnlineOrder>().Count() + 1;
+
+            ExecuteQuery($"INSERT INTO \"OnlineOrder\" VALUES ({id}, '{DateTime.Now:yyyy-MM-dd)}', {client_id}, '{address}', False)");
+        }
+
+        // обновить существующий ингредиент
+        public static void UpdateOnlineOrder(int id, string address)
+        {
+            var ingredient = GetObject<OnlineOrder>().Where(x => x.id == id).FirstOrDefault();
+            if (ingredient == null)
+                return;
+
+            ExecuteQuery($"UPDATE \"OnlineOrder\" SET address = '{address}' WHERE id = {id}");
+        }
+
+        public static void SetOnlineOrderComplete(int order_id) => ExecuteQuery($"UPDATE \"OnlineOrder\" SET is_complited = True WHERE id = {order_id}");
 
         //// создать новый заказ
         //public static void CreateOfflineOrder(string name)

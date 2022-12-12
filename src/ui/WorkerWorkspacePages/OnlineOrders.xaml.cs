@@ -1,4 +1,6 @@
-﻿using RestaurantsClasses.Enums;
+﻿using RestaurantsClasees.OrderSystem;
+using RestaurantsClasses.Enums;
+using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 using System;
@@ -35,12 +37,14 @@ namespace ui.WorkerWorkspacePages
     {
         private Window _previous;
         private Worker _worker;
+        private Client _client;
 
         public OnlineOrders(Window previous, Worker worker = null, Client client = null)
         {
             InitializeComponent();
             _previous = previous;
             _worker = worker;
+            _client = client;
 
             var orders = RequestClient.GetObjects<OnlineOrder>();
             if (client is not null)
@@ -82,34 +86,37 @@ namespace ui.WorkerWorkspacePages
             //    }
             //);
 
-            if (client is not null)
+            if (client is null)
             {
-                var completeButtonTemplate = new FrameworkElementFactory(typeof(Button));
-                completeButtonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
-                completeButtonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText"));
-                completeButtonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => setCompleteButton(o, e)));
-                ordersGrid.Columns.Add(
-                    new DataGridTemplateColumn()
-                    {
-                        Header = "Отметить выполненным",
-                        CellTemplate = new DataTemplate() { VisualTree = completeButtonTemplate },
-                        Width = 200
-                    }
-                );
+                //var completeButtonTemplate = new FrameworkElementFactory(typeof(Button));
+                //completeButtonTemplate.SetBinding(Button.NameProperty, new Binding("Id"));
+                //completeButtonTemplate.SetBinding(Button.ContentProperty, new Binding("ButtonText"));
+                //completeButtonTemplate.AddHandler(Button.ClickEvent, new RoutedEventHandler((o, e) => setCompleteButton(o, e)));
+                //ordersGrid.Columns.Add(
+                //    new DataGridTemplateColumn()
+                //    {
+                //        Header = "Отметить выполненным",
+                //        CellTemplate = new DataTemplate() { VisualTree = completeButtonTemplate },
+                //        Width = 200
+                //    }
+                //);
             }
 
-            ordersGrid.Columns.Add(
-                new DataGridTemplateColumn()
-                {
-                    Header = "Посмотреть блюда",
-                    CellTemplate = new DataTemplate() { VisualTree = showButtonTemplate },
-                    Width = 200
-                }
-            );
+            //ordersGrid.Columns.Add(
+            //    new DataGridTemplateColumn()
+            //    {
+            //        Header = "Посмотреть блюда",
+            //        CellTemplate = new DataTemplate() { VisualTree = showButtonTemplate },
+            //        Width = 200
+            //    }
+            //);
 
             if (client is not null)
             {
                 ordersGrid.IsReadOnly = false;
+                orderIdBox.Visibility = Visibility.Hidden;
+                idLabel.Visibility = Visibility.Hidden;
+                setCompleteButton.Visibility = Visibility.Hidden;
             }
 
 
@@ -138,20 +145,61 @@ namespace ui.WorkerWorkspacePages
             //exitButton_Click(sender, e);
         }
 
-        private void setCompleteButton(object sender, RoutedEventArgs e)
-        {
-            string rawOrderId = ((Button)sender).Content.ToString().Split(' ').Last();
-            if (!int.TryParse(rawOrderId, out int orderId))
-                return;
-
-            RequestClient.SetOrderComplete(orderId);
-            exitButton_Click(sender, e);
-        }
-
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             _previous.Show();
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ordersGrid.Columns.RemoveAt(0);
+            ordersGrid.Columns.RemoveAt(ordersGrid.Columns.Count - 2);
+            ordersGrid.Columns[ordersGrid.Columns.Count - 1].IsReadOnly = true;
+            ordersGrid.Columns[ordersGrid.Columns.Count - 3].IsReadOnly = true;
+        }
+
+        private bool isManualEditCommit;
+
+        private void ordersGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (!isManualEditCommit)
+            {
+                isManualEditCommit = true;
+                DataGrid grid = (DataGrid)sender;
+
+                int selectedRowIndex = grid.SelectedIndex;
+
+                grid.CommitEdit(DataGridEditingUnit.Row, true);
+
+                var items = ((DataGrid)sender).Items;
+
+                var orderData = (OnlineOrder)items[selectedRowIndex];
+
+                if (orderData.address == string.Empty)
+                {
+                    MessageBox.Show("Перед сохранением введите адрес доставки");
+                    return;
+                }
+
+                RequestClient.CreateOnlineOrder(_client.id, orderData.address);
+
+                MessageBox.Show("Заказ был успешно создан");
+                exitButton_Click(sender, null);
+
+
+                isManualEditCommit = false;
+            }
+        }
+
+        private void setCompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            string rawOrderId = orderIdBox.Text;
+            if (!int.TryParse(rawOrderId, out int orderId))
+                return;
+
+            RequestClient.SetOnlineOrderComplete(orderId);
+            exitButton_Click(sender, e);
         }
     }
 }
