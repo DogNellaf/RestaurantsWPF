@@ -113,18 +113,15 @@ namespace ui.AdminWorkspacePages
                     RequestClient.CreateMeal(mealData.Name, (float)mealData.Cost, (float)mealData.Weight, mealData.ServingsNumber);
 
                     MessageBox.Show("Блюдо был успешно создан");
-
-                    exitButton_Click(sender, null);
                 }
                 else
                 {
                     RequestClient.UpdateMeal(worker.id, mealData.Name, (float)mealData.Cost, (float)mealData.Weight, mealData.ServingsNumber);
 
                     MessageBox.Show("Данные блюда успешно обновлены");
-
-                    exitButton_Click(sender, null);
                 }
 
+                exitButton_Click(sender, null);
                 isManualEditCommit = false;
             }
         }
