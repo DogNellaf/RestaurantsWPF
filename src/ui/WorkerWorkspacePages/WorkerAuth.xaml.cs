@@ -39,6 +39,7 @@ namespace ui
                 {
                     new AdminWorkspace(this, worker).Show();
                 }
+                else
                 {
                     new WorkerWorkspace(this, worker).Show();
                 }
