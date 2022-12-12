@@ -118,6 +118,15 @@ namespace ui.Helper
             return JsonConvert.DeserializeObject<List<Worker>>(result);
         }
 
+        public static List<Ingredient> GetIngredientsByMeal(Meal meal)
+        {
+            var result = SendRequest($"api/GetIngredientsByMeal?id={meal.id}");
+
+            return JsonConvert.DeserializeObject<List<Ingredient>>(result);
+        }
+
+        public static void AddIngredientsToMeal(int meal_id, int ingredient_id) => SendRequest($"api/AddIngredientsToMeal?meal_id={meal_id}&ingredient_id={ingredient_id}");
+
 
         // получение блюд по заказу
         public static List<Meal> GetMealsByOrder(int order_id, bool is_online=false)
@@ -157,6 +166,8 @@ namespace ui.Helper
         public static string DeleteWorker(int id) => SendRequest($"api/delete?name=Worker&id={id}");
         public static string DeleteMeal(int id) => SendRequest($"api/delete?name=Meal&id={id}");
         public static string DeleteIngredient(int id) => SendRequest($"api/delete?name=Ingredient&id={id}");
+        public static string DeleteIngredientByMeal(int meal_id, int id) => SendRequest($"api/DeleteIngredientByMeal?meal_id={meal_id}&id={id}");
+        
 
     }
 }

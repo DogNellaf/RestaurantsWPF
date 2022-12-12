@@ -157,7 +157,23 @@ namespace ui.AdminWorkspacePages
 
         private void showIngredientsButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO
+            var rawMealId = mealIdBox.Text;
+
+            if (!int.TryParse(rawMealId, out int mealId))
+            {
+                MessageBox.Show("Введите корректное число");
+                return;
+            }
+
+            var meal = RequestClient.GetObjects<Meal>().Where(x => x.id == mealId).FirstOrDefault();
+            if (meal is null)
+            {
+                MessageBox.Show("Такое блюдо не существует");
+                return;
+            }
+
+            new IngredientInMealEditor(this, meal).Show();
+            Hide();
         }
     }
 }

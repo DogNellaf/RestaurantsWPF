@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="AdminWorkspacePages\IngredientInMealEditor.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="AdminWorkspacePages\IngredientsEditor.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>

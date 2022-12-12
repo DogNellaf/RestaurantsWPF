@@ -11,6 +11,10 @@ namespace ui.AdminWorkspacePages
     /// Логика взаимодействия для WorkerEditor.xaml
     /// </summary>
     /// 
+    /// <summary>
+    /// Логика взаимодействия для WorkerEditor.xaml
+    /// </summary>
+    /// 
     public partial class IngredientsEditor : Window
     {
         private Window _previous;
@@ -25,7 +29,7 @@ namespace ui.AdminWorkspacePages
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             _previous.Show();
-            Hide(); 
+            Hide();
         }
 
         private bool isManualEditCommit;

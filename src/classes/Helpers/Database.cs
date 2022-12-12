@@ -7,6 +7,7 @@ using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 using System.Data;
 using System.Text;
+using System.Xml.Linq;
 
 namespace RestaurantsClasses
 {
@@ -68,6 +69,9 @@ namespace RestaurantsClasses
             name = name[0].ToString().ToUpper() + name.TrimStart(name[0]);
             ExecuteQuery($"DELETE FROM \"{name}\" WHERE id = {id}");
         }
+
+        // общая функция удаления объектов
+        public static void DeleteIngredientByMeal(int meal_id, int id) => ExecuteQuery($"DELETE FROM \"Ingredient_to_Meal\" WHERE meal_id = {meal_id} AND ingredient_id = {id}");
 
         // функция отправки запроса в базу данных
         private static DataTable ExecuteQuery(string query)
@@ -176,6 +180,31 @@ namespace RestaurantsClasses
             }
             return result;
         }
+
+        // функция получения блюд по онлайн заказу
+        public static List<Ingredient> GetIngredientsByMeal(int meal_id)
+        {
+            var rawData = ExecuteQuery($"SELECT * FROM \"Ingredient_to_Meal\" WHERE meal_id = {meal_id}");
+            var result = new List<Ingredient>();
+
+            // проходимся по каждой строчке таблицы-результата
+            foreach (DataRow row in rawData.Rows)
+            {
+                // в конструктор передаем единственный параметр - все столбцы строки
+                var parameters = row.ItemArray;
+
+                int id = (int)parameters[0];
+                var ingredient = GetObject<Ingredient>($"id = {id}").FirstOrDefault();
+                result.Add(ingredient);
+            }
+            return result;
+        }
+
+
+        // функция добавления ингридента в блюдо
+        public static void AddIngredientsToMeal(int meal_id, int ingredient_id) => ExecuteQuery($"INSERT INTO \"Ingredient_to_Meal\" VALUES ({ingredient_id}, {meal_id}, 1)");
+
+
 
         // функция получения блюд по офлайн заказу
         //public static Dictionary<Meal, int> GetOfflineMeals(int order_id)

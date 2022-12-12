@@ -7,6 +7,8 @@ using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 using RestaurantsClasses.Enums;
 using System.Numerics;
+using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace RestaurantsDataApi.Controllers
 {
@@ -38,15 +40,15 @@ namespace RestaurantsDataApi.Controllers
             return JsonConvert.SerializeObject(rawMeals);
         }
 
-        public IEnumerable<Ingredient> GetIngredientsByMeal(int meal_id)
-        {
-            var meal = Database.GetObject<Meal>($"id = {meal_id}").FirstOrDefault();
+        //public IEnumerable<Ingredient> GetIngredientsByMeal(int meal_id)
+        //{
+        //    var meal = Database.GetObject<Meal>($"id = {meal_id}").FirstOrDefault();
 
-            if (meal is null)
-                return new List<Ingredient>();
+        //    if (meal is null)
+        //        return new List<Ingredient>();
 
-            return meal.GetIngredients().Select(x => x.Key);
-        }
+        //    return meal.GetIngredients().Select(x => x.Key);
+        //}
 
         public Client Auth(string username, string password)
         {
@@ -87,6 +89,7 @@ namespace RestaurantsDataApi.Controllers
         }
 
         public List<OfflineOrder> OfflineOrders() => Database.GetObject<OfflineOrder>("", "Order");
+        public List<Ingredient> GetIngredientsByMeal(int id) => Database.GetIngredientsByMeal(id);
 
         public List<OnlineOrder> OnlineOrders(int client_id) => Database.GetObject<OnlineOrder>($"client_id = {client_id}");
 
@@ -133,5 +136,9 @@ namespace RestaurantsDataApi.Controllers
         public void UpdateIngredient(int id, string name) => Database.UpdateIngredient(id, name);
 
         public void Delete(string name, int id) => Database.Delete(name, id);
+
+        public void AddIngredientsToMeal(int meal_id, int ingredient_id) => Database.AddIngredientsToMeal(meal_id, ingredient_id);
+
+        public void DeleteIngredientByMeal(int meal_id, int id) => Database.DeleteIngredientByMeal(meal_id, id);
     }
 }
