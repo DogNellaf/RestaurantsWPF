@@ -145,26 +145,17 @@ namespace ui.Helper
         // получение уровня доступа по id должности
         public static bool CheckIsItAdmin(int id) => bool.Parse(SendRequest($"api/isitadmin?id={id}"));
 
-        // закрепить столик за работником
         public static void SetOrderToWorker(int order_id, int worker_id) => SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}");
-        // отметить заказ выполненным
         public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
-        // сгенерировать новый пароль
         public static string GenerateNewPassword(int worker_id, int admin_id) => SendRequest($"api/GenerateNewPassword?worker_id={worker_id}&admin_id={admin_id}");
-        // создать нового сотрудника
         public static string CreateWorker(string username, string firstName, string secondName, long phone) => SendRequest($"api/createworker?username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
-        // обновить данные сотрудника
         public static string UpdateWorker(int worker_id, string username, string firstName, string secondName, long phone) => SendRequest($"api/updateworker?worker_id={worker_id}&username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
-        // создать нового сотрудника
         public static string CreateMeal(string name, float cost, float weight, int servnumber) => SendRequest($"api/createmeal?name={name}&cost={cost}&weight={weight}&servnumber={servnumber}");
-        // обновить данные сотрудника
         public static string UpdateMeal(int meal_id, string name, float cost, float weight, int servnumber) => SendRequest($"api/updatemeal?meal_id={meal_id}&name={name}&cost={cost}&weight={weight}&servnumber={servnumber}");
-        // удаление сотрудника
+        public static string CreateIngredient(string name) => SendRequest($"api/CreateIngredient?name={name}");
+        public static string UpdateIngredient(int id, string name) => SendRequest($"api/UpdateIngredient?id={id}&name={name}");
         public static string DeleteWorker(int id) => SendRequest($"api/delete?name=Worker&id={id}");
-        // создать нового пользователя
         public static string DeleteMeal(int id) => SendRequest($"api/delete?name=Meal&id={id}");
-
-        // создать нового пользователя
         public static string DeleteIngredient(int id) => SendRequest($"api/delete?name=Ingredient&id={id}");
 
     }

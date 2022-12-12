@@ -282,7 +282,25 @@ namespace RestaurantsClasses
             if (meal == null)
                 return;
 
-            ExecuteQuery($"UPDATE \"Meal\" WHERE id = {meal_id} SET name = '{name}', cost = {cost}, weight = {weight}, servings_number = '{servnumber}'");
+            ExecuteQuery($"UPDATE \"Meal\" SET name = '{name}', cost = {cost}, weight = {weight}, servings_number = '{servnumber}' WHERE id = {meal_id} ");
+        }
+
+        // создать новый ингредиент
+        public static void CreateIngredient(string name)
+        {
+            int id = GetObject<Ingredient>().Count() + 1;
+
+            ExecuteQuery($"INSERT INTO \"Ingredient\" VALUES ({id}, '{name}')");
+        }
+
+        // обновить существующий ингредиент
+        public static void UpdateIngredient(int id, string name)
+        {
+            var ingredient = GetObject<Ingredient>().Where(x => x.id == id).FirstOrDefault();
+            if (ingredient == null)
+                return;
+
+            ExecuteQuery($"UPDATE \"Ingredient\" SET name = '{name}' WHERE id = {id}");
         }
     }
 }

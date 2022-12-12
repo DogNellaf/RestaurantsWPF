@@ -7,6 +7,11 @@
         // название
         public string Name { get; set; }
 
+        public Ingredient()
+        {
+
+        }
+
         // конструктор
         public Ingredient(int id, string name): base(id)
         {

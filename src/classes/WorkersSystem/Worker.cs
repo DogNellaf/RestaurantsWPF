@@ -42,7 +42,7 @@ namespace RestaurantsClasses.WorkersSystem
         {
             FirstName = items[1].ToString();
             LastName = items[2].ToString();
-            Phone = (long)items[3];
+            Phone = long.Parse(items[3].ToString());
             PositionId = (int)items[4];
             Username = items[5].ToString();
             Password = items[6].ToString();

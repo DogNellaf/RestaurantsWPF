@@ -112,7 +112,8 @@ namespace ui.AdminWorkspacePages
                 {
                     RequestClient.CreateMeal(mealData.Name, (float)mealData.Cost, (float)mealData.Weight, mealData.ServingsNumber);
 
-                    MessageBox.Show("Блюдо был успешно создан");
+                    MessageBox.Show("Блюдо был успешно создано");
+                    exitButton_Click(sender, null);
                 }
                 else
                 {
@@ -121,7 +122,7 @@ namespace ui.AdminWorkspacePages
                     MessageBox.Show("Данные блюда успешно обновлены");
                 }
 
-                exitButton_Click(sender, null);
+                
                 isManualEditCommit = false;
             }
         }

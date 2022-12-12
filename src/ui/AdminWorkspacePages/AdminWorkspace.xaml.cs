@@ -29,7 +29,6 @@ namespace ui.AdminWorkspacePages
             Close();
         }
 
-        // открыть редактор работников
         public void editorWorkerButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();
@@ -44,7 +43,8 @@ namespace ui.AdminWorkspacePages
 
         public void ingredientsEditorButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            new IngredientsEditor(this).Show();
         }
 
 
