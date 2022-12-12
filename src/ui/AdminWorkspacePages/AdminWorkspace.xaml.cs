@@ -1,7 +1,13 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using RestaurantsClasees.OrderSystem;
+using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.WorkersSystem;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using ui.Helper;
 
 namespace ui.AdminWorkspacePages
@@ -71,6 +77,63 @@ namespace ui.AdminWorkspacePages
 
                 File.WriteAllText(saveFileDialog1.FileName, csv);
                 MessageBox.Show($"Файл успешно сохранен по пути: {saveFileDialog1.FileName}");
+            }
+        }
+
+        // сделать резеврную копию заказов
+        private void backupButton_Click(object sender, RoutedEventArgs e)
+        {
+            // запись в файл
+            var dialog = new SaveFileDialog()
+            {
+                Filter = "json files (*.json)|*.json|All files (*.*)|*.*",
+                RestoreDirectory = true
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                // считывание из базы 
+                var orders = RequestClient.GetObjects<Ingredient>();
+                var json = JsonConvert.SerializeObject(orders);
+
+                File.WriteAllText(dialog.FileName, json);
+                MessageBox.Show($"Резеврная копия успешно сохранена по пути: {dialog.FileName}");
+            }
+        }
+
+        // загрузить резервную копию
+        private void loadBackupButton_Click(object sender, RoutedEventArgs e)
+        {
+            // запись в файл
+            var dialog = new OpenFileDialog()
+            {
+                Filter = "json files (*.json)|*.json|All files (*.*)|*.*",
+                RestoreDirectory = true
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                // считывание из базы 
+                var json = File.ReadAllText(dialog.FileName);
+                var ingredients = JsonConvert.DeserializeObject<List<Ingredient>>(json);
+                MessageBox.Show($"Резеврная копия успешно считана");
+                int newCount = 0;
+                int updatedCount = 0;
+                foreach (var ingredient in ingredients)
+                {
+                    var sameIngredient = RequestClient.GetObjects<Ingredient>().Where(x => x.id == ingredient.id).FirstOrDefault();
+                    if (sameIngredient is not null)
+                    {
+                        RequestClient.UpdateIngredient(ingredient.id, ingredient.Name);
+                        updatedCount++;
+                    }
+                    else
+                    {
+                        RequestClient.CreateIngredient(ingredient.Name);
+                        newCount++;
+                    }
+                }
+                MessageBox.Show($"Было создано {newCount} и обновлено {updatedCount} ингредиентов");
             }
         }
     }

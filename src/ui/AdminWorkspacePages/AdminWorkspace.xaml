@@ -14,5 +14,7 @@
         <Button x:Name="exitButton" Content="Выход" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Width="209" FontSize="24" IsCancel="True" Click="exitButton_Click"/>
         <Button x:Name="dishesEditorButton" Content="Блюда" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="372" FontSize="24" Margin="215,130,205,0" Click="dishesEditorButton_Click"/>
         <Button x:Name="ingredientsEditorButton" Content="Ингредиенты" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="372" FontSize="24" Margin="215,175,205,0" Click="ingredientsEditorButton_Click"/>
+        <Button x:Name="backupButton" Content="Резервная копия ингредиентов" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="372" FontSize="24" Margin="215,265,205,0" IsCancel="True" Click="backupButton_Click"/>
+        <Button x:Name="loadBackupButton" Content="Загрузить копию" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="372" FontSize="24" Margin="215,310,205,0" Click="loadBackupButton_Click" />
     </Grid>
 </Window>

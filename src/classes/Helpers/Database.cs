@@ -329,7 +329,25 @@ namespace RestaurantsClasses
             if (ingredient == null)
                 return;
 
-            ExecuteQuery($"UPDATE \"Ingredient\" SET name = '{name}' WHERE id = {id}");
+            ExecuteQuery($"UPDATE \"Order\" SET name = '{name}' WHERE id = {id}");
         }
+
+        //// создать новый заказ
+        //public static void CreateOfflineOrder(string name)
+        //{
+        //    int id = GetObject<Ingredient>().Count() + 1;
+
+        //    ExecuteQuery($"INSERT INTO \"Order\" VALUES ({id}, '{name}')");
+        //}
+
+        //// обновить существующий ингредиент
+        //public static void UpdateOfflineOrder(int id, string name)
+        //{
+        //    var ingredient = GetObject<Ingredient>().Where(x => x.id == id).FirstOrDefault();
+        //    if (ingredient == null)
+        //        return;
+
+        //    ExecuteQuery($"UPDATE \"Ingredient\" SET name = '{name}' WHERE id = {id}");
+        //}
     }
 }
