@@ -37,10 +37,10 @@ namespace RestaurantsClasses
                 name = typeof(T).Name;
 
             // проверяем, есть ли условие
-            string query = $"SELECT * FROM \"{name}\"";
+            string query = $"SELECT * FROM public.\"{name}\"";
             if (where != "")
             {
-                query = $"SELECT * FROM \"{name}\" where {where}";
+                query = $"SELECT * FROM public.\"{name}\" where {where}";
             }
 
             // кидаем запрос на выборку
