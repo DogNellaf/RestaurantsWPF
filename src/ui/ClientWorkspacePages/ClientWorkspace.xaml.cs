@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ui.Helper;
+using ui.WorkerWorkspacePages;
 
 namespace ui
 {
@@ -22,11 +23,25 @@ namespace ui
     public partial class ClientWorkspace : Window
     {
         private Client _client;
-        public ClientWorkspace(Client client)
+        private Window _previous;
+        public ClientWorkspace(Client client, Window previous)
         {
             _client = client;
             InitializeComponent();
-            orderGrid.ItemsSource = RequestClient.GetOnlineOrdersByClient(client);
+            nameLabel.Content = $"Добро пожаловать, {_client.FirstName} {_client.SecondName}!";
+            _previous = previous;
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            _previous.Show();
+            Hide();
+        }
+
+        private void addOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            new OnlineOrders(this, null, _client).Show();
+            Hide();
         }
     }
 }

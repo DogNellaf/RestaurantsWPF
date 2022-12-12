@@ -140,5 +140,7 @@ namespace RestaurantsDataApi.Controllers
         public void AddIngredientsToMeal(int meal_id, int ingredient_id) => Database.AddIngredientsToMeal(meal_id, ingredient_id);
 
         public void DeleteIngredientByMeal(int meal_id, int id) => Database.DeleteIngredientByMeal(meal_id, id);
+
+        public List<OnlineOrder> GetOnlineOrders() => Database.GetObject<OnlineOrder>($"is_complited = false");
     }
 }

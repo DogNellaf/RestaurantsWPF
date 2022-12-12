@@ -49,7 +49,8 @@ namespace ui
         // посмотреть онлайн заказы
         private void onlineOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new OnlineOrders(this, _worker).Show();
+            Hide();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace ui
             var client = RequestClient.Auth(username, password);
             if (client is not null)
             {
-                new ClientWorkspace(client).Show();
+                new ClientWorkspace(client, this).Show();
 
             }
             else
