@@ -62,11 +62,12 @@ namespace RestaurantsClasses
             return objects;
         }
 
-        // обновление авы у пользователя
-        //internal static void UploadAvatar(string path, int id) => SendSQL($"UPDATE dbo.[User] SET photo = '{path}' WHERE id = {id}");
-
-        // добавление нового пользователя
-        //internal static void AddUser(string username, string password) => SendSQL($"INSERT INTO dbo.[User] VALUES ('{username}', '{password}', '', '')");
+        // общая функция удаления объектов
+        public static void Delete(string name, int id)
+        {
+            name = name[0].ToString().ToUpper() + name.TrimStart(name[0]);
+            ExecuteQuery($"DELETE FROM \"{name}\" WHERE id = {id}");
+        }
 
         // функция отправки запроса в базу данных
         private static DataTable ExecuteQuery(string query)
@@ -247,7 +248,7 @@ namespace RestaurantsClasses
         }
 
         // создать нового сотрудника
-        public static void CreateWorker(string username, string firstName, string secondName, int phone)
+        public static void CreateWorker(string username, string firstName, string secondName, long phone)
         {
             int id = GetObject<Worker>().Count() + 1;
 
@@ -256,7 +257,7 @@ namespace RestaurantsClasses
         }
 
         // обновить существующего сотрудника
-        public static void UpdateWorker(int worker_id, string username, string firstName, string secondName, int phone)
+        public static void UpdateWorker(int worker_id, string username, string firstName, string secondName, long phone)
         {
             var worker = GetObject<Worker>().Where(x => x.id == worker_id).FirstOrDefault();
             if (worker == null)

@@ -120,8 +120,10 @@ namespace RestaurantsDataApi.Controllers
 
         public string GenerateNewPassword(int worker_id, int admin_id) => Database.GenerateNewPassword(worker_id, admin_id);
 
-        public void CreateWorker(string username, string firstName, string secondName, int phone) => Database.CreateWorker(username, firstName, secondName, phone);
+        public void CreateWorker(string username, string firstName, string secondName, long phone) => Database.CreateWorker(username, firstName, secondName, phone);
 
-        public void UpdateWorker(int worker_id, string username, string firstName, string secondName, int phone) => Database.UpdateWorker(worker_id, username, firstName, secondName, phone);
+        public void UpdateWorker(int worker_id, string username, string firstName, string secondName, long phone) => Database.UpdateWorker(worker_id, username, firstName, secondName, phone);
+
+        public void Delete(string name, int id) => Database.Delete(name, id);
     }
 }

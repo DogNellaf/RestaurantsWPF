@@ -151,10 +151,17 @@ namespace ui.Helper
         public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
         // сгенерировать новый пароль
         public static string GenerateNewPassword(int worker_id, int admin_id) => SendRequest($"api/GenerateNewPassword?worker_id={worker_id}&admin_id={admin_id}");
+        // создать нового сотрудника
+        public static string CreateWorker(string username, string firstName, string secondName, long phone) => SendRequest($"api/createworker?username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
+        // обновить данные сотрудника
+        public static string UpdateWorker(int worker_id, string username, string firstName, string secondName, long phone) => SendRequest($"api/updateworker?worker_id={worker_id}&username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
+        // удаление сотрудника
+        public static string DeleteWorker(int id) => SendRequest($"api/delete?name=Worker&id={id}");
         // создать нового пользователя
-        public static string CreateWorker(string username, string firstName, string secondName, int phone) => SendRequest($"api/createworker?username={username}&firstName={firstName}&secondName={secondName}&phone={phone}");
+        public static string DeleteMeal(int id) => SendRequest($"api/delete?name=Meal&id={id}");
+
         // создать нового пользователя
-        public static string UpdateWorker(int worker_id, string username, string firstName, string secondName, int phone) => SendRequest($"api/updateworker?worker_id={worker_id}&username={username}&firstName={firstName}&phone={phone}");
+        public static string DeleteIngredient(int id) => SendRequest($"api/delete?name=Ingredient&id={id}");
 
     }
 }

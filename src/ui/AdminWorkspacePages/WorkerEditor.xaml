@@ -14,10 +14,10 @@
         </Border>
         <Label Content="Новый пароль" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
         <TextBox x:Name="newPasswordBox" HorizontalAlignment="Left" Margin="105,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
-        <Button x:Name="changePasswordButton" Content="Сменить пароль" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="0,0,340,10" Click="changePasswordButton_Click"/>
+        <Button x:Name="changePasswordButton" Content="Сменить пароль" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="310,0,0,10" Click="changePasswordButton_Click"/>
         <Label Content="Id сотрудника" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="workerIdBox" HorizontalAlignment="Left" Margin="105,0,0,41" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
-        <Button x:Name="removeWorkerButton" Content="Удалить сотрудника" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="0,0,185,10" Click="removeWorkerButton_Click"/>
+        <TextBox x:Name="workerIdBox" HorizontalAlignment="Left" Margin="105,0,0,41" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button x:Name="removeWorkerButton" Content="Удалить сотрудника" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="465,0,0,10" Click="removeWorkerButton_Click"/>
 
     </Grid>
 </Window>

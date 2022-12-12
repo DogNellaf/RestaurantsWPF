@@ -152,13 +152,7 @@ namespace ui.AdminWorkspacePages
                 {
                     MessageBox.Show("Перед сохранением введите фамилию пользователя");
                     return;
-                }
-
-                if (!int.TryParse(workerData.Phone, out int phone))
-                {
-                    MessageBox.Show("Номер телефона может состоять только из цифр");
-                    return;
-                }    
+                } 
 
                 var workers = RequestClient.GetWorkers();
 
@@ -167,7 +161,7 @@ namespace ui.AdminWorkspacePages
                 if (worker is null)
                 {
                     //TODO создание
-                    RequestClient.CreateWorker(workerData.Username, workerData.FirstName, workerData.LastName, phone);
+                    RequestClient.CreateWorker(workerData.Username, workerData.FirstName, workerData.LastName, workerData.Phone);
 
                     MessageBox.Show("Пользователь был успешно создан");
 
@@ -179,7 +173,7 @@ namespace ui.AdminWorkspacePages
                 else
                 {
                     //TODO сохранение
-                    RequestClient.UpdateWorker(worker.id, workerData.Username, workerData.FirstName, workerData.LastName, phone);
+                    RequestClient.UpdateWorker(worker.id, workerData.Username, workerData.FirstName, workerData.LastName, workerData.Phone);
 
                     MessageBox.Show("Данные пользователя успешно обновлены");
 
@@ -192,9 +186,9 @@ namespace ui.AdminWorkspacePages
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            workersGrid.Columns.RemoveAt(workersGrid.Columns.Count - 1);
-            workersGrid.Columns.RemoveAt(workersGrid.Columns.Count - 1);
-            //workersGrid.Columns[workersGrid.Columns.Count].IsReadOnly = true;
+            workersGrid.Columns.RemoveAt(workersGrid.Columns.Count - 2);
+            //workersGrid.Columns.RemoveAt(workersGrid.Columns.Count - 1);
+            workersGrid.Columns[workersGrid.Columns.Count-1].IsReadOnly = true;
         }
 
         private void changePasswordButton_Click(object sender, RoutedEventArgs e)
@@ -245,7 +239,9 @@ namespace ui.AdminWorkspacePages
                 return;
             }
 
-            //TODO
+            RequestClient.DeleteWorker(worker.id);
+            MessageBox.Show("Сотрудник успешно удален");
+            exitButton_Click(null, null);
         }
     }
 }

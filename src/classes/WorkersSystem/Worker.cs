@@ -16,7 +16,7 @@ namespace RestaurantsClasses.WorkersSystem
         public string LastName { get; set; }
 
         // телефон 
-        public string? Phone { get; set; }
+        public long Phone { get; set; }
 
         // имя пользователя
         public string Username { get; set; }
@@ -28,7 +28,7 @@ namespace RestaurantsClasses.WorkersSystem
         //public Position Position => Database.GetObject<Position>($"id = {_position_id}").FirstOrDefault();
 
         // конструктор
-        public Worker(int id, string firstName, string lastName, string? phone, int position_id, string username, string password) : base(id)
+        public Worker(int id, string firstName, string lastName, long phone, int position_id, string username, string password) : base(id)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -42,7 +42,7 @@ namespace RestaurantsClasses.WorkersSystem
         {
             FirstName = items[1].ToString();
             LastName = items[2].ToString();
-            Phone = items[3] is null ? null : items[3].ToString();
+            Phone = (long)items[3];
             PositionId = (int)items[4];
             Username = items[5].ToString();
             Password = items[6].ToString();
