@@ -147,15 +147,9 @@ namespace ui.Helper
             return JsonConvert.DeserializeObject<List<Meal>>(result);
         }
 
-        // отметить, что блюдо уже принесли
         public static string DeliverOfflineMeal(int order_id, int meal_id) => SendRequest($"api/deliverofflinemeal?order_id={order_id}&meal_id={meal_id}");
-
-        // получение названия должности по id
         public static string GetPositionName(int id) => SendRequest($"api/getpositionname?id={id}");
-
-        // получение уровня доступа по id должности
         public static bool CheckIsItAdmin(int id) => bool.Parse(SendRequest($"api/isitadmin?id={id}"));
-
         public static void SetOrderToWorker(int order_id, int worker_id) => SendRequest($"api/setordertoworker?order_id={order_id}&worker_id={worker_id}");
         public static void SetOrderComplete(int order_id) => SendRequest($"api/setordercomplete?order_id={order_id}");
         public static void SetOnlineOrderComplete(int order_id) => SendRequest($"api/SetOnlineOrderComplete?order_id={order_id}");
@@ -170,8 +164,8 @@ namespace ui.Helper
         public static string DeleteMeal(int id) => SendRequest($"api/delete?name=Meal&id={id}");
         public static string DeleteIngredient(int id) => SendRequest($"api/DeleteIngredient?id={id}");
         public static string DeleteIngredientByMeal(int meal_id, int id) => SendRequest($"api/DeleteIngredientByMeal?meal_id={meal_id}&id={id}");
-
         public static string CreateOnlineOrder(int client_id, string address) => SendRequest($"api/CreateOnlineOrder?client_id={client_id}&address={address}");
         public static string UpdatePosition(int worker_id, int position_id) => SendRequest($"api/UpdatePosition?worker_id={worker_id}&position_id={position_id}");
+        public static string CreateOfflineOrder(int table_id, string meals) => SendRequest($"api/CreateOfflineOrder?table_id={table_id}&meals={meals}");
     }
 }

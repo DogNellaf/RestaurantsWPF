@@ -9,6 +9,7 @@ using RestaurantsClasses.Enums;
 using System.Numerics;
 using System.ComponentModel;
 using System.Xml.Linq;
+using RestaurantsClasses.BookingSystem;
 
 namespace RestaurantsDataApi.Controllers
 {
@@ -97,6 +98,7 @@ namespace RestaurantsDataApi.Controllers
 
         public List<Worker> GetWorkers() => Database.GetObject<Worker>();
         public List<Position> GetPositions() => Database.GetObject<Position>();
+        public List<Table> GetTables() => Database.GetObject<Table>();
 
         public string GetPositionName(int id)
         {
@@ -151,6 +153,7 @@ namespace RestaurantsDataApi.Controllers
         public void SetOnlineOrderComplete(int order_id) => Database.SetOnlineOrderComplete(order_id);
 
         public void UpdatePosition(int worker_id, int position_id) => Database.UpdateWorkerPosition(worker_id, position_id);
+        public void CreateOfflineOrder(int table_id, string meals) => Database.CreateOfflineOrder(table_id, meals);
 
         //public void UpdateOnlineOrder(int id, string address) => Database.UpdateOnlineOrder(id, address);
     }

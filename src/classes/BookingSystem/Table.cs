@@ -10,6 +10,11 @@
         // занят ли в текущий момент
         public bool IsReserved { get; set; }
 
+        public Table()
+        {
+
+        }
+
         // конструктор
         public Table(int id, int seatsCount, bool isReserved): base(id)
         {
@@ -19,7 +24,8 @@
 
         public Table(object[] items) : base((int)items[0])
         {
-            IsReserved = (bool)items[1];
+            SeatsCount = (int)items[1];
+            IsReserved = (bool)items[2];
         }
 
         // текстовый вывод

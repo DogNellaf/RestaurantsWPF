@@ -19,8 +19,8 @@ namespace RestaurantsClasees.OrderSystem
         // количество порций
         public int ServingsNumber { get; set; }
 
-        // ингредиенты
-        public Dictionary<Ingredient, double> GetIngredients() => Database.GetIngredients(this);
+        public bool IsContains { get; set; } = false;
+
 
         // конструктор
         public Meal(int id, string name, double cost, double weight, int servingsNumber): base(id)

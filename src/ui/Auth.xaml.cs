@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ui.AdminWorkspacePages;
 using ui.Helper;
 
 namespace ui
@@ -50,6 +51,12 @@ namespace ui
         private void workerButton_Click(object sender, RoutedEventArgs e)
         {
             new WorkerAuth(this).Show();
+            Hide();
+        }
+
+        private void createOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            new CreateOrder(this).Show();
             Hide();
         }
     }

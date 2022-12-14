@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Newtonsoft.Json;
+using Npgsql;
 using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses.Enums;
 using RestaurantsClasses.Helpers;
@@ -6,9 +7,6 @@ using RestaurantsClasses.KontragentsSystem;
 using RestaurantsClasses.OnlineSystem;
 using RestaurantsClasses.WorkersSystem;
 using System.Data;
-using System.Net;
-using System.Text;
-using System.Xml.Linq;
 
 namespace RestaurantsClasses
 {
@@ -258,6 +256,25 @@ namespace RestaurantsClasses
                 }
             }
             Delete("Ingredient", id);
+        }
+        
+        // создание офлайн заказа
+        public static void CreateOfflineOrder(int table_id, string raw_meals)
+        {
+            var meals = JsonConvert.DeserializeObject<List<Meal>>(raw_meals);
+            var orders = Database.GetObject<OfflineOrder>("", "Order");
+            int id = 1;
+            if (orders.Count > 0)
+            {
+                id = orders.Max(x => x.id) + 1;
+            }
+
+            ExecuteQuery($"INSERT INTO \"Order\" VALUES ({id}, 1, '{DateTime.Now:yyyy-MM-dd HH:mm:ss}', {table_id}, NULL)");
+
+            foreach (var meal in meals)
+            {
+                ExecuteQuery($"INSERT INTO \"Meal_to_Order\" VALUES ({meal.id}, {id}, 1, 0)");
+            }
         }
 
         // функция закрепления оффлайн заказа за сотрудником
