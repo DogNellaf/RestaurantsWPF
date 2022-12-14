@@ -57,27 +57,8 @@ namespace ui.AdminWorkspacePages
         // экпорт всех оффлайн и онлайн заказов в csv формате
         private void exportButton_Click(object sender, RoutedEventArgs e)
         {
-            // запись в файл
-            var saveFileDialog1 = new SaveFileDialog()
-            {
-                Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*",
-                RestoreDirectory = true
-            };
-
-            if (saveFileDialog1.ShowDialog() == true)
-            {
-                // считывание из базы 
-                var orders = RequestClient.GetAllOfflineOrders();
-                var csv = "Id;ServerId;TableId;Status;Created\n";
-
-                foreach (var order in orders)
-                {
-                    csv += $"{order.id};{order.ServerId};{order.TableId};{order.Status};{order.Created}\n";
-                }
-
-                File.WriteAllText(saveFileDialog1.FileName, csv);
-                MessageBox.Show($"Файл успешно сохранен по пути: {saveFileDialog1.FileName}");
-            }
+            new Export(this).Show();
+            Hide();
         }
 
         // сделать резеврную копию заказов

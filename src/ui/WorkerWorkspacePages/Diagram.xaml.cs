@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDrawing.Charts;
 
 namespace ui.WorkerWorkspacePages
 {
@@ -27,12 +28,35 @@ namespace ui.WorkerWorkspacePages
             InitializeComponent();
             _previous = previous;
             _worker = worker;
+
+            Chart chart = new LineChart();
+
+            // Добавляем новую диаграмму на поле контейнера для графиков.
+            GridForChart.Children.Add(chart.ChartBackground);
+
+            // Принудительно обновляем размеры контейнера для графика.
+            GridForChart.UpdateLayout();
+
+            // Создаём график.
+            CreateChart(chart);
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             _previous.Show();
             Close();
+        }
+
+        private static void CreateChart(Chart chart)
+        {
+            chart.Clear();
+
+            Random random = new();
+
+            for (int i = 0; i < random.Next(1, 25); i++)
+            {
+                chart.AddValue(random.Next(0, 2001));
+            }
         }
     }
 }

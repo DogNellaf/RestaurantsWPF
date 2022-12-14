@@ -181,6 +181,29 @@ namespace RestaurantsClasses
         }
 
         // функция получения блюд по онлайн заказу
+        public static List<Meal> GetOnlineMeals(int order_id)
+        {
+            var rawData = ExecuteQuery($"SELECT * FROM public.\"Meal_to_OnlineOrder\" WHERE online_order_id = {order_id}");
+            var result = new List<Meal>();
+
+            // проходимся по каждой строчке таблицы-результата
+            foreach (DataRow row in rawData.Rows)
+            {
+                // в конструктор передаем единственный параметр - все столбцы строки
+                var parameters = row.ItemArray;
+
+                int id = (int)parameters[0];
+                var meal = GetObject<Meal>($"id = {id}").FirstOrDefault();
+                result.Add(meal);
+            }
+            return result;
+        }
+        
+        public static void AddMealToOnlineOrder(int meal_id, int order_id) => ExecuteQuery($"INSERT INTO \"Meal_to_OnlineOrder\" VALUES ({meal_id}, {order_id}, 1)");
+        public static void RemoveMealToOnlineOrder(int meal_id, int order_id) => ExecuteQuery($"DELETE FROM \"Meal_to_OnlineOrder\" WHERE meal_id = {meal_id} AND order_id = {order_id}");
+
+
+        // функция получения блюд по онлайн заказу
         public static List<Ingredient> GetIngredientsByMeal(int meal_id)
         {
             var rawData = ExecuteQuery($"SELECT * FROM public.\"Ingredient_to_Meal\" WHERE meal_id = {meal_id}");

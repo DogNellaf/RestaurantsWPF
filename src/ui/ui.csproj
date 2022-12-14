@@ -24,6 +24,9 @@
     <Page Update="ClientWorkspacePages\CreateOrder.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+    <Page Update="ClientWorkspacePages\MealsInOnlineOrder.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="WorkerWorkspacePages\WorkerAuth.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>

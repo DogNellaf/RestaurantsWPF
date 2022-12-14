@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ui.AdminWorkspacePages;
 using ui.Helper;
 using ui.WorkerWorkspacePages;
+using WpfDrawing;
 
 namespace ui
 {
@@ -52,7 +53,7 @@ namespace ui
                         new WorkerEditor(this, worker).Show();
                         break;
                     case WorkerRole.Accountant:
-                        new Diagram(this, worker).Show();
+                        new Diagram2(this).Show();
                         break;
                     default:
                         new WorkerWorkspace(this, worker).Show();

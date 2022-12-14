@@ -10,6 +10,7 @@ using System.Numerics;
 using System.ComponentModel;
 using System.Xml.Linq;
 using RestaurantsClasses.BookingSystem;
+using Microsoft.VisualBasic;
 
 namespace RestaurantsDataApi.Controllers
 {
@@ -154,6 +155,38 @@ namespace RestaurantsDataApi.Controllers
 
         public void UpdatePosition(int worker_id, int position_id) => Database.UpdateWorkerPosition(worker_id, position_id);
         public void CreateOfflineOrder(int table_id, string meals) => Database.CreateOfflineOrder(table_id, meals);
+        public List<Meal> GetOnlineMeals(int id) => Database.GetOnlineMeals(id);
+        public void AddMealToOnlineOrder(int meal_id, int order_id) => Database.AddMealToOnlineOrder(meal_id, order_id);
+        public void RemoveMealToOnlineOrder(int meal_id, int order_id) => Database.RemoveMealToOnlineOrder(meal_id, order_id);
+        public List<double> GetMonthData()
+        {
+            var now = DateTime.Now;
+            var date = DateTime.Parse($"{now.Year}-{now.Month}-{1}");
+            var offlineOrders = Database.GetObject<OfflineOrder>("", "Order");
+            var onlineOrders = Database.GetObject<OnlineOrder>();
+
+            var result = new List<double>();
+
+            while (date.Month == now.Month)
+            {
+                double sum = 0;
+                var offlineOrdersByDay = offlineOrders.Where(x => x.Created.Date == date.Date);
+                var onlineOrdersByDay = onlineOrders.Where(x => x.created.Date == date.Date);
+
+                foreach (var offline in offlineOrdersByDay)
+                {
+                    sum += Database.GetOfflineMeals(offline.id).Sum(x => x.Cost);
+                }
+
+                foreach (var offline in onlineOrdersByDay)
+                {
+                    sum += Database.GetOnlineMeals(offline.id).Sum(x => x.Cost);
+                }
+                result.Add(sum);
+                date = date.AddDays(1);
+            }
+            return result;
+        }
 
         //public void UpdateOnlineOrder(int id, string address) => Database.UpdateOnlineOrder(id, address);
     }

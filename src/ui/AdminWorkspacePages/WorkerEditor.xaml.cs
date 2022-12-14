@@ -14,17 +14,6 @@ namespace ui.AdminWorkspacePages
     /// </summary>
     /// 
 
-    //public class WorkerItem
-    //{
-    //    public int Id { get; set;}
-    //    public string FirstName { get; set;}
-    //    public string LastName { get; set; }
-    //    public string Phone { get; set; }
-    //    public string Username { get; set; }
-    //    public string Password { get; set; }
-    //    public string ButtonText { get; set; }
-    //}
-
     public partial class WorkerEditor : Window
     {
         private Window _previous;

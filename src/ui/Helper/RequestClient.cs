@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Npgsql.TypeMapping;
 using RestaurantsClasees;
 using RestaurantsClasees.OrderSystem;
 using RestaurantsClasses;
@@ -28,7 +29,7 @@ namespace ui.Helper
         //private static int _port = 7173;
 
         // функция отправки запроса на сервер и получения списка объектов
-        public static List<T> GetObjects<T>() where T: Model
+        public static List<T> GetObjects<T>() where T : Model
         {
             string raw = SendRequest($"api/get{typeof(T).Name}s");
 
@@ -61,7 +62,7 @@ namespace ui.Helper
             {
                 return null;
             }
-           
+
         }
 
         // проверка авторизации сотрудника 
@@ -129,22 +130,31 @@ namespace ui.Helper
 
         public static void AddIngredientsToMeal(int meal_id, int ingredient_id) => SendRequest($"api/AddIngredientsToMeal?meal_id={meal_id}&ingredient_id={ingredient_id}");
 
+        public static void AddMealToOnlineOrder(int meal_id, int order_id) => SendRequest($"api/AddMealToOnlineOrder?meal_id={meal_id}&order_id={order_id}");
+        public static void RemoveMealToOnlineOrder(int meal_id, int order_id) => SendRequest($"api/RemoveMealToOnlineOrder?meal_id={meal_id}&order_id={order_id}");
 
         // получение блюд по заказу
-        public static List<Meal> GetMealsByOrder(int order_id, bool is_online=false)
+        public static List<Meal> GetMealsByOrder(int order_id, bool is_online = false)
         {
             var result = "";
             if (is_online)
             {
-                result = SendRequest($"api/GetOnlineMeals?order_id={order_id}");
+                result = SendRequest($"api/GetOnlineMeals?id={order_id}");
             }
             else
             {
                 result = SendRequest($"api/GetOfflineMeals?order_id={order_id}");
             }
-            
+
 
             return JsonConvert.DeserializeObject<List<Meal>>(result);
+        }
+
+        public static List<double> GetMonthData()
+        {
+            var result = SendRequest($"api/GetMonthData");
+
+            return JsonConvert.DeserializeObject<List<double>>(result);
         }
 
         public static string DeliverOfflineMeal(int order_id, int meal_id) => SendRequest($"api/deliverofflinemeal?order_id={order_id}&meal_id={meal_id}");

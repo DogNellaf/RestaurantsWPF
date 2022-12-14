@@ -12,9 +12,6 @@
         <Border BorderBrush="Black" BorderThickness="1" Height="273" Width="616">
             <DataGrid x:Name="ordersGrid" IsReadOnly="True" ColumnWidth="*" CellEditEnding="ordersGrid_CellEditEnding"/>
         </Border>
-        <Label x:Name="idLabel" Content="Id заказа" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="orderIdBox" HorizontalAlignment="Left" Margin="74,0,0,7" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button x:Name="setCompleteButton" Content="Отметить выполненным" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="279,0,0,7" Click="setCompleteButton_Click"/>
 
     </Grid>
 </Window>
