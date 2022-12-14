@@ -20,9 +20,9 @@ namespace ui.Helper
     internal static class RequestClient
     {
         // адрес сервера
-        //private static string _server = "https://localhost:7173";
+        private static string _server = "https://localhost:7173";
 
-        private static string _server = "http://92.53.115.41:5001";
+        //private static string _server = "http://92.53.115.41:5001";
 
         // порт
         //private static int _port = 7173;
@@ -172,5 +172,6 @@ namespace ui.Helper
         public static string DeleteIngredientByMeal(int meal_id, int id) => SendRequest($"api/DeleteIngredientByMeal?meal_id={meal_id}&id={id}");
 
         public static string CreateOnlineOrder(int client_id, string address) => SendRequest($"api/CreateOnlineOrder?client_id={client_id}&address={address}");
+        public static string UpdatePosition(int worker_id, int position_id) => SendRequest($"api/UpdatePosition?worker_id={worker_id}&position_id={position_id}");
     }
 }

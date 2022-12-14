@@ -16,7 +16,7 @@ namespace RestaurantsClasses
     public static class Database
     {
         // строка подключения
-        private static string _connectionString = "Host=localhost;Username=postgres;Password=root;Client Encoding=UTF8;";
+        private static string _connectionString = "Host=localhost;Username=postgres;Password=root;Database=restaurants;Client Encoding=UTF8;";
 
         // порт сервера
         //private static int _port = 5432;
@@ -296,6 +296,22 @@ namespace RestaurantsClasses
             //TODO брать должность из базы
             ExecuteQuery($"UPDATE public.\"Worker\" WHERE id = {worker_id} SET first_name = '{firstName}', last_name = '{secondName}', phone = {phone}, username = '{username}'");
         }
+
+        // обновить существующего сотрудника
+        public static void UpdateWorkerPosition(int worker_id, int position_id)
+        {
+            var worker = GetObject<Worker>().Where(x => x.id == worker_id).FirstOrDefault();
+            if (worker == null)
+                return;
+
+            var position = GetObject<Position>().Where(x => x.id == position_id).FirstOrDefault();
+            if (position == null)
+                return;
+
+            //TODO брать должность из базы
+            ExecuteQuery($"UPDATE public.\"Worker\" SET position_id = '{position_id}' WHERE id = {worker_id}");
+        }
+
 
         // создать новое блюдо
         public static void CreateMeal(string name, float cost, float weight, int servnumber)

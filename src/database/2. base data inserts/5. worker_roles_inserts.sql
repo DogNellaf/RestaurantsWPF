@@ -3,4 +3,8 @@ INSERT INTO "WorkerRole" VALUES
 INSERT INTO "WorkerRole" VALUES
 (2, 'Менеджер');
 INSERT INTO "WorkerRole" VALUES
-(3, 'Администратор');
+(4, 'Кадровик');
+INSERT INTO "WorkerRole" VALUES
+(5, 'Бухгалтер');
+INSERT INTO "WorkerRole" VALUES
+(3, 'Администратор'); 

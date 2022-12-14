@@ -96,6 +96,7 @@ namespace RestaurantsDataApi.Controllers
         public List<OfflineOrder> NewOrders() => Database.GetObject<OfflineOrder>($"status_id = {1}", "Order");
 
         public List<Worker> GetWorkers() => Database.GetObject<Worker>();
+        public List<Position> GetPositions() => Database.GetObject<Position>().Where(x => x.Role != WorkerRole.Admin).ToList();
 
         public string GetPositionName(int id)
         {
@@ -146,6 +147,8 @@ namespace RestaurantsDataApi.Controllers
         public void CreateOnlineOrder(int client_id, string address) => Database.CreateOnlineOrder(client_id, address);
 
         public void SetOnlineOrderComplete(int order_id) => Database.SetOnlineOrderComplete(order_id);
+
+        public void UpdatePosition(int worker_id, int position_id) => Database.UpdateWorkerPosition(worker_id, position_id);
 
         //public void UpdateOnlineOrder(int id, string address) => Database.UpdateOnlineOrder(id, address);
     }

@@ -12,12 +12,15 @@
         <Border BorderBrush="Black" BorderThickness="1" Margin="92,80,92,80">
             <DataGrid x:Name="workersGrid" RowEditEnding="workersGrid_RowEditEnding" ColumnWidth="*"/>
         </Border>
-        <Label Content="Новый пароль" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="newPasswordBox" HorizontalAlignment="Left" Margin="105,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
-        <Button x:Name="changePasswordButton" Content="Сменить пароль" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="310,0,0,10" Click="changePasswordButton_Click"/>
+        <Label Content="Новый пароль" HorizontalAlignment="Left" Margin="310,0,0,41" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="newPasswordBox" HorizontalAlignment="Left" Margin="405,0,0,41" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="265" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
+        <Button x:Name="changePasswordButton" Content="Сменить пароль" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="140" IsCancel="True" Margin="10,0,0,10" Click="changePasswordButton_Click"/>
         <Label Content="Id сотрудника" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom"/>
         <TextBox x:Name="workerIdBox" HorizontalAlignment="Left" Margin="105,0,0,41" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button x:Name="removeWorkerButton" Content="Удалить сотрудника" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="465,0,0,10" Click="removeWorkerButton_Click"/>
+        <Button x:Name="removeWorkerButton" Content="Удалить сотрудника" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="155,0,0,10" Click="removeWorkerButton_Click"/>
+        <Label Content="Роль" HorizontalAlignment="Left" Margin="310,0,0,8" VerticalAlignment="Bottom" Width="90" Height="28"/>
+        <ComboBox x:Name="roleComboBox" HorizontalAlignment="Left" Margin="405,0,0,8" VerticalAlignment="Bottom" Width="120" Height="26"/>
+        <Button x:Name="saveRoleButton" Content="Сохранить роль" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="140" IsCancel="True" Margin="530,0,0,8" Click="saveRoleButton_Click"/>
 
     </Grid>
 </Window>

@@ -18,6 +18,11 @@ namespace RestaurantsClasses.WorkersSystem
         // уровень прав
         public WorkerRole Role { get; set; }
 
+        public Position()
+        {
+
+        }
+
         // конструктор
         public Position(int id, string name, double salary, double prize, WorkerRole role): base(id)
         {
