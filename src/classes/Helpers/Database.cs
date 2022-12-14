@@ -14,7 +14,7 @@ namespace RestaurantsClasses
     public static class Database
     {
         // строка подключения
-        private static string _connectionString = "Host=localhost;Username=postgres;Password=root;Database=restaurants;Client Encoding=UTF8;";
+        private static string _connectionString = "Host=localhost;Username=postgres;Password=root;Client Encoding=UTF8;";
 
         // порт сервера
         //private static int _port = 5432;
