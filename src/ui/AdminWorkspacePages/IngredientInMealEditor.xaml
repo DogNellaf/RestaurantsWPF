@@ -14,8 +14,8 @@
         </Border>
         <Label Content="Id ингредиента" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
         <TextBox x:Name="ingredientIdBox" HorizontalAlignment="Left" Margin="105,0,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="200" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button x:Name="removeButton" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="465,0,0,10" Click="removeButton_Click"/>
-        <Button x:Name="addButton" Content="Добавить в блюдо" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="310,0,0,10" Click="addButton_Click"/>
+        <Button x:Name="removeButton" Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="310,0,0,10" Click="removeButton_Click"/>
+        <Button x:Name="addButton" Content="Добавить в блюдо" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="26" Width="150" IsCancel="True" Margin="310,0,0,10" Click="addButton_Click" Visibility="Hidden"/>
 
     </Grid>
 </Window>

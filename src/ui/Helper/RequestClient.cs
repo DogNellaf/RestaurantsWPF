@@ -168,7 +168,7 @@ namespace ui.Helper
         public static string UpdateIngredient(int id, string name) => SendRequest($"api/UpdateIngredient?id={id}&name={name}");
         public static string DeleteWorker(int id) => SendRequest($"api/delete?name=Worker&id={id}");
         public static string DeleteMeal(int id) => SendRequest($"api/delete?name=Meal&id={id}");
-        public static string DeleteIngredient(int id) => SendRequest($"api/delete?name=Ingredient&id={id}");
+        public static string DeleteIngredient(int id) => SendRequest($"api/DeleteIngredient?id={id}");
         public static string DeleteIngredientByMeal(int meal_id, int id) => SendRequest($"api/DeleteIngredientByMeal?meal_id={meal_id}&id={id}");
 
         public static string CreateOnlineOrder(int client_id, string address) => SendRequest($"api/CreateOnlineOrder?client_id={client_id}&address={address}");

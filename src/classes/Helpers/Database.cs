@@ -244,6 +244,22 @@ namespace RestaurantsClasses
             return GetObject<Client>($"id = {id}").FirstOrDefault();
         }
 
+        // функция удаления ингредиента
+        public static void DeleteIngredient(int id)
+        {
+            var meals = GetObject<Meal>();
+
+            foreach (var meal in meals)
+            {
+                var ingredient = GetIngredientsByMeal(meal.id).Where(x => x.id == id).FirstOrDefault();
+                if (ingredient is not null)
+                {
+                    ExecuteQuery($"DELETE FROM \"Ingredient_to_Meal\" WHERE ingredient_id = {id}");
+                }
+            }
+            Delete("Ingredient", id);
+        }
+
         // функция закрепления оффлайн заказа за сотрудником
         public static void SetOrderToWorker(int order_id, int worker_id) => ExecuteQuery($"UPDATE public.\"Order\" SET worker_id = {worker_id}, status_id = 2 WHERE id = {order_id}");
 

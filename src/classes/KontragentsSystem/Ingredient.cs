@@ -7,6 +7,8 @@
         // название
         public string Name { get; set; }
 
+        public bool IsContains { get; set; } = false;
+
         public Ingredient()
         {
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RestaurantsClasses.Enums;
+using RestaurantsClasses.WorkersSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ui.AdminWorkspacePages;
 using ui.Helper;
+using ui.WorkerWorkspacePages;
 
 namespace ui
 {
@@ -35,13 +38,25 @@ namespace ui
             var worker = RequestClient.AuthWorker(username, password);
             if (worker is not null)
             {
-                if (RequestClient.CheckIsItAdmin(worker.PositionId))
+                var positions = RequestClient.GetObjects<Position>();
+                var position = positions.Where(x => x.id == worker.PositionId).First();
+                switch (position.Role)
                 {
-                    new AdminWorkspace(this, worker).Show();
-                }
-                else
-                {
-                    new WorkerWorkspace(this, worker).Show();
+                    case WorkerRole.Admin:
+                        new AdminWorkspace(this, worker).Show();
+                        break;
+                    case WorkerRole.Manager:
+                        new NewOrders(this, worker).Show();
+                        break;
+                    case WorkerRole.HR:
+                        new WorkerEditor(this, worker).Show();
+                        break;
+                    case WorkerRole.Accountant:
+                        new Diagram(this, worker).Show();
+                        break;
+                    default:
+                        new WorkerWorkspace(this, worker).Show();
+                        break;
                 }
                 Hide();
             }

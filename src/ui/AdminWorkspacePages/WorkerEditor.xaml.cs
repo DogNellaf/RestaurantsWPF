@@ -1,4 +1,5 @@
-﻿using RestaurantsClasses.WorkersSystem;
+﻿using RestaurantsClasses.Enums;
+using RestaurantsClasses.WorkersSystem;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,17 +29,24 @@ namespace ui.AdminWorkspacePages
     {
         private Window _previous;
         private Worker _worker;
-        public WorkerEditor(Window previous, Worker admin)
+        public WorkerEditor(Window previous, Worker worker)
         {
             InitializeComponent();
             _previous = previous;
-            _worker = admin;
+            _worker = worker;
 
             var workers = RequestClient.GetWorkers();
 
             workersGrid.ItemsSource = workers;
 
-            roleComboBox.ItemsSource = RequestClient.GetObjects<Position>();
+            var positions = RequestClient.GetObjects<Position>();
+            var position = RequestClient.GetObjects<Position>().Where(x => x.id == worker.PositionId).First();
+
+            if (position.Role != WorkerRole.Admin)
+            {
+                positions = positions.Where(x => x.Role != WorkerRole.Admin && x.Role != WorkerRole.HR).ToList();
+            }
+            roleComboBox.ItemsSource = positions;
             roleComboBox.SelectedItem = roleComboBox.Items[0];
         }
 
